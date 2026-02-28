@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Invitation (Next.js)
 
-## Getting Started
+A premium single-page wedding invitation website built with Next.js, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+## Stack
+
+- Next.js 16
+- React 19
+- Tailwind CSS v4
+- Framer Motion
+- Lucide React
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app/page.tsx`: Main page composition
+- `src/lib/invitationData.ts`: Central content/configuration for names, dates, events, FAQs, etc.
+- `src/components/EnvelopeReveal.tsx`: Cinematic invitation opening animation
+- `src/components/Hero.tsx`: Hero section with names/date/CTAs
+- `src/components/CountdownTimer.tsx`: Live countdown
+- `src/components/EventDetails.tsx`: Wedding + reception cards
+- `src/components/StoryTimeline.tsx`: Story timeline section
+- `src/components/Gallery.tsx`: Horizontal gallery
+- `src/components/GuideSection.tsx`: Travel, dress code, gifts, FAQs
+- `src/components/RSVPForm.tsx`: RSVP UI with localStorage fallback
+- `src/components/QuickNav.tsx`: Sticky top section navigation
 
-## Learn More
+## Customize content
 
-To learn more about Next.js, take a look at the following resources:
+Update `src/lib/invitationData.ts` to change:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Couple names
+- Wedding date/time and RSVP deadline
+- Event schedule and locations
+- Story moments
+- Travel, dress code, gifts, and FAQs
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- RSVP currently stores submissions in browser `localStorage` (`invite-rsvp`) for demo behavior.
+- For production guest management, replace this with a real backend/API.

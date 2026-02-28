@@ -1,0 +1,195 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isDone, setIsDone] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const timeoutRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const media = window.matchMedia("(max-width: 768px)");
+        const updateMobile = () => setIsMobile(media.matches);
+        updateMobile();
+
+        media.addEventListener("change", updateMobile);
+        return () => media.removeEventListener("change", updateMobile);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current !== null) {
+                window.clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
+    const handleOpen = () => {
+        if (isOpen) return;
+
+        setIsOpen(true);
+        onOpen?.();
+
+        timeoutRef.current = window.setTimeout(() => {
+            setIsDone(true);
+        }, 3000);
+    };
+
+    if (isDone) return null;
+
+    const zoomScale = isMobile ? 3.25 : 3.85;
+
+    return (
+        <AnimatePresence>
+            {!isDone && (
+                <motion.div
+                    initial={{ opacity: 1, scale: 1 }}
+                    animate={{
+                        opacity: isOpen ? 0 : 1,
+                        scale: isOpen ? zoomScale : 1,
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                        opacity: { duration: 1.02, delay: 1.42, ease: "easeIn" },
+                        scale: { duration: 1.72, delay: 0.82, ease: [0.22, 0.61, 0.36, 1] },
+                    }}
+                    className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto transform-gpu transform-origin-center overflow-hidden"
+                    style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
+                >
+                    {/* Backlight glow */}
+                    <motion.div
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
+                        initial={{ opacity: 0, scale: 0.82 }}
+                        animate={{
+                            opacity: isOpen ? [0, 1, 0] : 0,
+                            scale: isOpen ? 1.48 : 0.82,
+                        }}
+                        transition={{ duration: 2.02, delay: 0.12, ease: "easeOut" }}
+                        style={{ willChange: "transform, opacity" }}
+                    >
+                        <div
+                            className="w-[150vw] h-[150vw] sm:w-[80vw] sm:h-[80vw] rounded-full"
+                            style={{
+                                background:
+                                    "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(212,175,55,0.6) 20%, rgba(255,255,255,0) 70%)",
+                                filter: `blur(${isMobile ? 42 : 58}px)`,
+                            }}
+                        />
+                    </motion.div>
+
+                    {/* Flash to blend into site */}
+                    <motion.div
+                        className="absolute inset-0 pointer-events-none z-[100] bg-white mix-blend-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: isOpen ? [0, 0.9, 0] : 0 }}
+                        transition={{ duration: 2.55, delay: 0.8, ease: "easeInOut" }}
+                    />
+
+                    <div
+                        className="relative flex-none perspective-[2000px] z-10"
+                        style={{
+                            width: "max(100vw, 150vh)",
+                            height: "max(calc(100vw / 1.5), 100vh)",
+                            contain: "layout paint",
+                        }}
+                    >
+                        {/* Left flap */}
+                        <div
+                            className="absolute inset-0 w-full h-full z-10"
+                            style={{ filter: "drop-shadow(3px 0px 10px rgba(0,0,0,0.15))" }}
+                        >
+                            <div
+                                className="w-full h-full bg-[#f1ebd9] envelope-texture"
+                                style={{ clipPath: "polygon(0 0, 50% 50%, 0 100%)" }}
+                            />
+                        </div>
+
+                        {/* Right flap */}
+                        <div
+                            className="absolute inset-0 w-full h-full z-10"
+                            style={{ filter: "drop-shadow(-3px 0px 10px rgba(0,0,0,0.15))" }}
+                        >
+                            <div
+                                className="w-full h-full bg-[#f1ebd9] envelope-texture"
+                                style={{ clipPath: "polygon(100% 0, 50% 50%, 100% 100%)" }}
+                            />
+                        </div>
+
+                        {/* Bottom flap */}
+                        <div
+                            className="absolute inset-0 w-full h-full z-20"
+                            style={{ filter: "drop-shadow(0px -5px 15px rgba(0,0,0,0.2))" }}
+                        >
+                            <div
+                                className="w-full h-full bg-[#eee6d3] envelope-texture"
+                                style={{ clipPath: "polygon(0 100%, 50% 50%, 100% 100%)" }}
+                            />
+                        </div>
+
+                        {/* Top flap */}
+                        <motion.div
+                            className="absolute top-0 left-0 w-full h-[50%] z-30 transform-gpu origin-top"
+                            initial={{ rotateX: 0 }}
+                            animate={{ rotateX: isOpen ? 180 : 0 }}
+                            transition={{ duration: 1.52, ease: [0.22, 0.61, 0.36, 1] }}
+                            style={{
+                                transformStyle: "preserve-3d",
+                                WebkitTransformStyle: "preserve-3d",
+                                willChange: "transform",
+                                transform: "translateZ(0)",
+                            }}
+                        >
+                            <div
+                                className="absolute inset-0"
+                                style={{
+                                    backfaceVisibility: "hidden",
+                                    WebkitBackfaceVisibility: "hidden",
+                                }}
+                            >
+                                <div className="w-full h-full" style={{ filter: "drop-shadow(0px 8px 12px rgba(0,0,0,0.25))" }}>
+                                    <div
+                                        className="w-full h-full bg-[#f9f5ed] envelope-texture"
+                                        style={{ clipPath: "polygon(0 0, 100% 0, 50% 100%)" }}
+                                    />
+                                </div>
+
+                                <button
+                                    onClick={handleOpen}
+                                    className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[60] w-36 h-36 md:w-48 md:h-48 cursor-pointer hover:scale-105 hover:brightness-110 active:scale-95 transition-all outline-none"
+                                    style={{
+                                        pointerEvents: isOpen ? "none" : "auto",
+                                        transformStyle: "preserve-3d",
+                                        transform: "translateZ(10px)",
+                                    }}
+                                >
+                                    <Image
+                                        src="/wax_seal_transparent.png"
+                                        alt="Open Invitation"
+                                        fill
+                                        className="object-contain drop-shadow-2xl"
+                                        priority
+                                    />
+                                </button>
+                            </div>
+
+                            <div
+                                className="absolute inset-0 bg-[#e6dfcc] envelope-texture shadow-inner"
+                                style={{
+                                    clipPath: "polygon(0 0, 100% 0, 50% 100%)",
+                                    transform: "translateZ(0) rotateX(180deg)",
+                                    backfaceVisibility: "hidden",
+                                    WebkitBackfaceVisibility: "hidden",
+                                }}
+                            />
+                        </motion.div>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+}

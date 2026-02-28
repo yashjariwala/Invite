@@ -73,7 +73,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         opacity: { duration: 1.02, delay: 1.42, ease: "easeIn" },
                         scale: { duration: 1.72, delay: 0.82, ease: [0.22, 0.61, 0.36, 1] },
                     }}
-                    className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto transform-gpu transform-origin-center overflow-hidden bg-[#f9f5ed]"
+                    className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto transform-gpu transform-origin-center overflow-hidden"
                     style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
                 >
                     {/* Backlight glow */}

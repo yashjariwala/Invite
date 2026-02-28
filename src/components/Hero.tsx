@@ -33,7 +33,7 @@ export default function Hero() {
   return (
     <section className="relative h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#FAF9F6] pt-16">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <Image src="/watercolor_floral.png" alt="Floral Frame" fill className="object-cover opacity-80 mix-blend-multiply" priority />
+        <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/watercolor_floral.png`} alt="Floral Frame" fill className="object-cover opacity-80 mix-blend-multiply" priority />
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-transparent to-[#FAF9F6] z-0" />

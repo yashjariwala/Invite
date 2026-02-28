@@ -55,7 +55,7 @@ export default function CountdownTimer() {
         <h2 className="font-script text-6xl md:text-[6rem] text-[#2D3A3A] mb-8 leading-none">Countdown</h2>
 
         <Image
-          src="/gold_divider.png"
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/gold_divider.png`}
           alt="divider"
           width={192}
           height={18}

@@ -54,7 +54,8 @@ export default function CountdownTimer() {
         <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C5A46D] mb-6 block">The Big Day</span>
         <h2 className="font-script text-6xl md:text-[6rem] text-[#2D3A3A] mb-8 leading-none">Countdown</h2>
 
-        <img src="https://yashjariwala.github.io/Invite/gold_divider.png"
+        <Image
+          src="/gold_divider.png"
           alt="divider"
           width={192}
           height={18}

@@ -167,11 +167,12 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                         transform: "translateZ(10px)",
                                     }}
                                 >
-                                    <img src="https://yashjariwala.github.io/Invite/wax_seal_transparent.png"
+                                    <Image
+                                        src="/wax_seal_transparent.png"
                                         alt="Open Invitation"
-                                        style={{ width: "100%", height: "100%" }}
+                                        fill
                                         className="object-contain drop-shadow-2xl"
-                                        
+                                        priority
                                     />
                                 </button>
                             </div>

@@ -26,6 +26,8 @@ export const metadata: Metadata = {
   description: "Join us in celebrating the wedding of Dhruvi and Yash on July 4, 2026.",
 };
 
+export const themeColor = "#f9f5ed";
+
 export default function RootLayout({
   children,
 }: Readonly<{

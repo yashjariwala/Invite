@@ -29,6 +29,21 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
         };
     }, []);
 
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+        if (!isDone) {
+            document.body.style.overflow = "hidden";
+            document.body.style.touchAction = "none";
+        } else {
+            document.body.style.overflow = "";
+            document.body.style.touchAction = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+            document.body.style.touchAction = "";
+        };
+    }, [isDone]);
+
     const handleOpen = () => {
         if (isOpen) return;
 
@@ -58,7 +73,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         opacity: { duration: 1.02, delay: 1.42, ease: "easeIn" },
                         scale: { duration: 1.72, delay: 0.82, ease: [0.22, 0.61, 0.36, 1] },
                     }}
-                    className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto transform-gpu transform-origin-center overflow-hidden"
+                    className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto transform-gpu transform-origin-center overflow-hidden bg-[#f9f5ed]"
                     style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
                 >
                     {/* Backlight glow */}

@@ -15,11 +15,11 @@ export const invitationData = {
     date: "July 4th & 5th, 2026",
     time: "10:30 AM",
   },
+  weddingDateIso: "2026-07-04T00:00:00+05:30",
   weddingDateLabel: "Saturday, July 4, 2026",
   invocation: "॥ श्री गणेशाय नमः ॥",
   heroSubtitle: "Together with our families, we invite you to celebrate our wedding.",
-  cityLabel: "Navi Mumbai, Maharashtra",
-  rsvpDeadlineLabel: "June 1, 2026",
+  cityLabel: "Marriot Hotel, Navi Mumbai",
   events: [
     {
       title: "Wedding Ceremony (Lagna)",
@@ -31,7 +31,7 @@ export const invitationData = {
     },
     {
       title: "Reception",
-      dateLabel: ", July 5, 2026",
+      dateLabel: "Sunday, July 5, 2026",
       timeLabel: "7:00 PM onwards",
       venue: "Marriott Hotel",
       address: "Navi Mumbai, Maharashtra, India",

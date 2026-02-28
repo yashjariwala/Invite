@@ -9,9 +9,9 @@ export type EventInfo = {
 
 export const invitationData = {
   couple: {
-    bride: "Dhruvi",
-    groom: "Yash",
-    shortMonogram: "D & Y",
+    bride: "Yash",
+    groom: "Dhruvi",
+    shortMonogram: "Y & D",
   },
   weddingDateIso: "2026-07-04T00:00:00+05:30",
   weddingDateLabel: "Saturday, July 4, 2026",

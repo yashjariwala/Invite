@@ -68,6 +68,15 @@ export default function Hero() {
           {invitationData.couple.date}
         </motion.p>
 
+        <motion.p
+          className="text-[10px] sm:text-xs md:text-sm font-sans tracking-[0.2em] sm:tracking-[0.25em] font-light text-[#8a8a8a] uppercase mt-6 mb-4 drop-shadow-sm px-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 1.9 }}
+        >
+          {invitationData.heroSubtitle}
+        </motion.p>
+
 
 
         <motion.p

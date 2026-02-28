@@ -160,7 +160,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
 
                                 <button
                                     onClick={handleOpen}
-                                    className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[60] w-36 h-36 md:w-48 md:h-48 cursor-pointer hover:scale-105 hover:brightness-110 active:scale-95 transition-all outline-none"
+                                    className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-[60] w-48 h-48 md:w-64 md:h-64 cursor-pointer hover:scale-105 hover:brightness-110 active:scale-95 transition-all outline-none"
                                     style={{
                                         pointerEvents: isOpen ? "none" : "auto",
                                         transformStyle: "preserve-3d",

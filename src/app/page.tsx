@@ -6,11 +6,13 @@ import StoryTimeline from "@/components/StoryTimeline";
 import Gallery from "@/components/Gallery";
 import GuideSection from "@/components/GuideSection";
 import QuickNav from "@/components/QuickNav";
+import AudioPlayer from "@/components/AudioPlayer";
 import { invitationData } from "@/lib/invitationData";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#FAF9F6] text-[#2D3A3A] font-sans selection:bg-[#C5A46D]/30 selection:text-white pb-0">
+      <AudioPlayer />
       <QuickNav />
       <EnvelopeReveal />
       <Hero />

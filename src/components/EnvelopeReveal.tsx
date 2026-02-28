@@ -50,6 +50,11 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
         setIsOpen(true);
         onOpen?.();
 
+        const audio = document.getElementById("bg-music") as HTMLAudioElement;
+        if (audio) {
+            audio.play().catch((e) => console.log("Audio autoplay blocked by browser:", e));
+        }
+
         timeoutRef.current = window.setTimeout(() => {
             setIsDone(true);
         }, 3000);
@@ -189,6 +194,18 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                         className="object-contain drop-shadow-2xl"
                                         priority
                                     />
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: [0.7, 1, 0.7], y: 0 }}
+                                        transition={{ duration: 2.5, delay: 2, repeat: Infinity, ease: "easeInOut" }}
+                                        className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-full flex flex-col items-center justify-center font-sans tracking-widest text-[#2D3A3A] font-semibold text-sm sm:text-base uppercase z-[70] drop-shadow-md"
+                                        style={{ pointerEvents: "none" }}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="mb-1 text-[#C5A46D] animate-bounce">
+                                            <path d="m18 15-6-6-6 6" />
+                                        </svg>
+                                        <p>Click to Open</p>
+                                    </motion.div>
                                 </button>
                             </div>
 

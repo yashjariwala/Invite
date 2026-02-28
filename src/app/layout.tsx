@@ -23,7 +23,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: "Yash & Dhruvi - Wedding Invitation",
-  description: "Join us in celebrating the wedding of Yash and Dhruvi on July 4, 2026.",
+  description: "Join us in celebrating the wedding of Yash and Dhruvi on July 4th & 5th, 2026.",
 };
 
 export const themeColor = "#f9f5ed";

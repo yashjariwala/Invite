@@ -65,7 +65,16 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.74 }}
           className="font-serif text-xl md:text-2xl lg:text-3xl text-[#2D3A3A] mt-8 italic tracking-wide"
         >
-          {invitationData.weddingDateLabel}
+          {invitationData.couple.date}
+        </motion.p>
+
+        <motion.p
+          className="text-lg md:text-xl font-sans tracking-[0.2em] font-light text-[#C5A46D] uppercase mt-4 mb-4 drop-shadow-sm"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 1 }}
+        >
+          {invitationData.heroSubtitle}
         </motion.p>
 
         <motion.p

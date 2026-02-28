@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
+const isGithubActions = process.env.GITHUB_PAGES === "true" || process.env.GITHUB_ACTIONS === "true";
 const repoName = "Invite";
 const basePath = isGithubActions ? `/${repoName}` : "";
 

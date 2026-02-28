@@ -18,13 +18,17 @@ export default function EventDetails() {
         >
           <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C5A46D] mb-6 block">When &amp; Where</span>
           <h2 className="font-script text-6xl md:text-[6rem] mb-8 text-[#2D3A3A] leading-none">The Celebrations</h2>
-          <Image
-            src="/gold_divider.png"
-            alt="divider"
-            width={192}
-            height={18}
-            className="w-32 md:w-48 opacity-80 mix-blend-multiply contrast-125 brightness-110"
-          />
+
+
+          <div className="flex items-center justify-center w-full my-6 opacity-75">
+            <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 md:w-48">
+              <path d="M0 12H65" stroke="#C5A46D" strokeWidth="0.75" />
+              <path d="M115 12H180" stroke="#C5A46D" strokeWidth="0.75" />
+              <path d="M75 12L90 4L105 12L90 20L75 12Z" stroke="#C5A46D" strokeWidth="1" />
+              <path d="M82 12L90 7.5L98 12L90 16.5L82 12Z" fill="#C5A46D" />
+              <circle cx="90" cy="12" r="1.5" fill="#FAF9F6" />
+            </svg>
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
@@ -48,7 +52,7 @@ export default function EventDetails() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 w-full h-[300px] md:h-[450px] bg-[#FAF9F6] p-3 md:p-4 shadow-xl border-t-4 border-[#C5A46D]"
+          className="mt-16 w-full h-[300px] md:h-[450px] p-3 md:p-4 shadow-xl border-t-4 border-[#C5A46D]"
         >
           <iframe
             src="https://maps.google.com/maps?q=Marriott%20Hotel%20Navi%20Mumbai&t=&z=14&ie=UTF8&iwloc=&output=embed"
@@ -113,15 +117,6 @@ function EventCard({
           <p className="font-sans text-xs text-[#8a8a8a] mt-2 tracking-wide uppercase">{address}</p>
         </div>
       </div>
-
-      <a
-        href={mapUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-auto inline-block border border-[#C5A46D] text-[#C5A46D] px-8 py-4 uppercase text-[10px] sm:text-xs tracking-[0.2em] hover:bg-[#C5A46D] hover:text-white transition-colors duration-500 w-full md:w-auto text-center"
-      >
-        View on Map
-      </a>
     </motion.div>
   );
 }

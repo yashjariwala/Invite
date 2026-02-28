@@ -33,7 +33,7 @@ export default function Hero() {
   return (
     <section className="relative h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#FAF9F6] pt-16">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <Image src="/watercolor_floral.png" alt="Floral Frame" fill className="object-cover opacity-80 mix-blend-multiply" priority />
+        <Image src="/mandala_pattern.png" alt="Floral Frame" fill className="object-cover opacity-40 mix-blend-multiply" priority />
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-transparent to-[#FAF9F6] z-0" />
@@ -43,7 +43,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1 }}
-          className="font-sans text-[#C5A46D] tracking-[0.42em] sm:tracking-[0.5em] text-[10px] sm:text-xs uppercase mb-10"
+          className="font-serif text-[#2D3A3A] tracking-[0.2em] sm:tracking-[0.25em] text-xs sm:text-sm md:text-base uppercase mb-10 xl:mb-14 font-medium"
         >
           {invitationData.heroSubtitle}
         </motion.span>
@@ -72,7 +72,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2.02 }}
-          className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-[#8a8a8a] mt-5"
+          className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.24em] text-[#2D3A3A] mt-5"
         >
           {invitationData.cityLabel}
         </motion.p>
@@ -83,12 +83,6 @@ export default function Hero() {
           transition={{ duration: 0.82, delay: 2.25 }}
           className="mt-10 flex flex-col sm:flex-row gap-3"
         >
-          <a
-            href="#rsvp"
-            className="bg-[#2D3A3A] text-white px-8 py-3 text-[10px] tracking-[0.24em] uppercase hover:bg-[#1f2a2a] transition-colors"
-          >
-            Confirm Attendance
-          </a>
           <a
             href="#details"
             className="border border-[#C5A46D] text-[#C5A46D] px-8 py-3 text-[10px] tracking-[0.24em] uppercase hover:bg-[#C5A46D] hover:text-white transition-colors"

@@ -5,7 +5,6 @@ import EventDetails from "@/components/EventDetails";
 import StoryTimeline from "@/components/StoryTimeline";
 import Gallery from "@/components/Gallery";
 import GuideSection from "@/components/GuideSection";
-import RSVPForm from "@/components/RSVPForm";
 import QuickNav from "@/components/QuickNav";
 import { invitationData } from "@/lib/invitationData";
 
@@ -20,10 +19,11 @@ export default function Home() {
       <StoryTimeline />
       <Gallery />
       <GuideSection />
-      <RSVPForm />
 
       <footer className="bg-[#2D3A3A] text-white py-12 text-center">
-        <p className="font-script text-4xl mb-2 text-[#C5A46D]">{invitationData.couple.shortMonogram}</p>
+        <p className="font-script text-5xl mb-2 text-[#C5A46D]">
+          {invitationData.couple.bride} <span className="font-sans text-3xl font-light">&amp;</span> {invitationData.couple.groom}
+        </p>
         <p className="font-sans text-[10px] tracking-widest uppercase text-white/50">Can&apos;t wait to celebrate with you</p>
       </footer>
     </main>

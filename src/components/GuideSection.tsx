@@ -6,7 +6,7 @@ import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
 
 export default function GuideSection() {
-  const { travel, dressCode, gifts, faqs } = invitationData;
+  const { travel, gifts, faqs } = invitationData;
 
   return (
     <section id="guide" className="py-24 px-4 bg-[#f4ebd9] border-b border-[#e3dccf]">
@@ -20,25 +20,32 @@ export default function GuideSection() {
         >
           <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C5A46D] mb-6 block">Details</span>
           <h2 className="font-script text-6xl md:text-[6rem] mb-8 text-[#2D3A3A] leading-none">Guest Guide</h2>
-          <Image
-            src="/gold_divider.png"
-            alt="divider"
-            width={192}
-            height={18}
-            className="w-32 md:w-48 opacity-80 mix-blend-multiply"
-          />
+
+
+          <div className="flex items-center justify-center w-full my-6 opacity-75">
+            <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 md:w-48">
+              <path d="M0 12H65" stroke="#C5A46D" strokeWidth="0.75" />
+              <path d="M115 12H180" stroke="#C5A46D" strokeWidth="0.75" />
+              <path d="M75 12L90 4L105 12L90 20L75 12Z" stroke="#C5A46D" strokeWidth="1" />
+              <path d="M82 12L90 7.5L98 12L90 16.5L82 12Z" fill="#C5A46D" />
+              <circle cx="90" cy="12" r="1.5" fill="#FAF9F6" />
+            </svg>
+          </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-6 mb-10">
-          <InfoCard title="Travel & Stay">
-            <p><span className="font-medium">Nearest Airport:</span> {travel.nearestAirport}</p>
+        <div className="grid lg:grid-cols-2 gap-6 mb-10">
+          <InfoCard title="Travel">
+            <div className="mb-3">
+              <span className="font-medium block mb-1">Nearest Airports:</span>
+              <ul className="list-disc list-inside space-y-1 text-left inline-block">
+                {travel.airports.map((airport) => (
+                  <li key={airport.name}>
+                    {airport.name} {airport.note && <span className="italic text-[#C5A46D]">({airport.note})</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p><span className="font-medium">Nearest Station:</span> {travel.nearestStation}</p>
-            <p><span className="font-medium">Suggested Stay:</span> {travel.suggestedStay}</p>
-          </InfoCard>
-
-          <InfoCard title="Dress Code">
-            <p><span className="font-medium">Theme:</span> {dressCode.title}</p>
-            <p>{dressCode.notes}</p>
           </InfoCard>
 
           <InfoCard title="Gifts">
@@ -46,21 +53,6 @@ export default function GuideSection() {
           </InfoCard>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {faqs.map((faq, idx) => (
-            <motion.article
-              key={faq.q}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className="bg-[#faf9f6] p-6 border border-[#e6dece]"
-            >
-              <h3 className="font-serif text-2xl text-[#2D3A3A] mb-3">{faq.q}</h3>
-              <p className="font-sans text-sm text-[#6e6e6e] leading-relaxed">{faq.a}</p>
-            </motion.article>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -73,7 +65,7 @@ function InfoCard({ title, children }: { title: string; children: ReactNode }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7 }}
-      className="bg-[#faf9f6] p-8 border border-[#e6dece] shadow-[0_20px_50px_-40px_rgba(0,0,0,0.45)]"
+      className="bg-[#FAF9F6] p-8 text-center flex flex-col items-center border border-[#e6dece] shadow-[0_20px_50px_-40px_rgba(0,0,0,0.45)]"
     >
       <h3 className="font-serif text-3xl italic text-[#C5A46D] mb-5">{title}</h3>
       <div className="space-y-3 font-sans text-sm leading-relaxed text-[#5c5c5c]">{children}</div>

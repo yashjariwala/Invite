@@ -39,11 +39,11 @@ export default function CountdownTimer() {
   }, []);
 
   if (!isClient) {
-    return <section className="py-24 px-4 bg-[#FAF9F6] h-[300px]" />;
+    return <section className="py-24 px-4 h-[300px]" />;
   }
 
   return (
-    <section className="py-24 px-4 bg-[#FAF9F6] text-center w-full border-y border-[#eee5d5]">
+    <section className="py-24 px-4 text-center w-full border-y border-[#eee5d5]">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -54,13 +54,17 @@ export default function CountdownTimer() {
         <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C5A46D] mb-6 block">The Big Day</span>
         <h2 className="font-script text-6xl md:text-[6rem] text-[#2D3A3A] mb-8 leading-none">Countdown</h2>
 
-        <Image
-          src="/gold_divider.png"
-          alt="divider"
-          width={192}
-          height={18}
-          className="w-32 md:w-48 opacity-80 mix-blend-multiply mb-16"
-        />
+        
+        
+        <div className="flex items-center justify-center w-full my-6 opacity-75">
+          <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 md:w-48">
+            <path d="M0 12H65" stroke="#C5A46D" strokeWidth="0.75"/>
+            <path d="M115 12H180" stroke="#C5A46D" strokeWidth="0.75"/>
+            <path d="M75 12L90 4L105 12L90 20L75 12Z" stroke="#C5A46D" strokeWidth="1"/>
+            <path d="M82 12L90 7.5L98 12L90 16.5L82 12Z" fill="#C5A46D"/>
+            <circle cx="90" cy="12" r="1.5" fill="#FAF9F6"/>
+          </svg>
+        </div>
 
         <div className="flex justify-center gap-8 sm:gap-14 md:gap-20">
           <TimeUnit value={timeLeft.days} label="Days" />

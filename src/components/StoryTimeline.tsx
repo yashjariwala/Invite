@@ -6,7 +6,7 @@ import { invitationData } from "@/lib/invitationData";
 
 export default function StoryTimeline() {
   return (
-    <section id="story" className="py-24 px-4 bg-[#FAF9F6] border-b border-[#e9e0cf]">
+    <section id="story" className="py-24 px-4 border-b border-[#e9e0cf]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -17,16 +17,20 @@ export default function StoryTimeline() {
         <div className="text-center mb-16 flex flex-col items-center">
           <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C5A46D] mb-6 block">Our Journey</span>
           <h2 className="font-script text-6xl md:text-[6rem] mb-8 text-[#2D3A3A] leading-none">Love Story</h2>
-          <Image
-            src="/gold_divider.png"
-            alt="divider"
-            width={192}
-            height={18}
-            className="w-32 md:w-48 opacity-80 mix-blend-multiply"
-          />
+
+
+          <div className="flex items-center justify-center w-full my-6 opacity-75">
+            <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 md:w-48">
+              <path d="M0 12H65" stroke="#C5A46D" strokeWidth="0.75" />
+              <path d="M115 12H180" stroke="#C5A46D" strokeWidth="0.75" />
+              <path d="M75 12L90 4L105 12L90 20L75 12Z" stroke="#C5A46D" strokeWidth="1" />
+              <path d="M82 12L90 7.5L98 12L90 16.5L82 12Z" fill="#C5A46D" />
+              <circle cx="90" cy="12" r="1.5" fill="#FAF9F6" />
+            </svg>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {invitationData.storyMoments.map((moment, idx) => (
             <motion.article
               key={moment.title}

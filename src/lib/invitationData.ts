@@ -15,12 +15,13 @@ export const invitationData = {
   },
   weddingDateIso: "2026-07-04T00:00:00+05:30",
   weddingDateLabel: "Saturday, July 4, 2026",
+  invocation: "॥ श्री गणेशाय नमः ॥",
   heroSubtitle: "Together with our families, we invite you to celebrate our wedding.",
   cityLabel: "Navi Mumbai, Maharashtra",
   rsvpDeadlineLabel: "June 1, 2026",
   events: [
     {
-      title: "Wedding Ceremony",
+      title: "Wedding Ceremony (Lagna)",
       dateLabel: "Saturday, July 4, 2026",
       timeLabel: "4:30 PM onwards",
       venue: "Marriott Hotel",
@@ -38,45 +39,42 @@ export const invitationData = {
   ] as EventInfo[],
   storyMoments: [
     {
-      title: "First Hello",
-      text: "A simple conversation turned into something we never wanted to end.",
-      year: "2021",
+      title: "How We Met",
+      text: "Our paths first crossed in 2018 while we were studying together in engineering college.",
+      year: "2018",
     },
     {
-      title: "Growing Together",
-      text: "From long calls to shared plans, we built a life around care and laughter.",
-      year: "2023",
+      title: "Falling in Love",
+      text: "After years of friendship, we officially started dating and building a beautiful life together.",
+      year: "2022",
+    },
+    {
+      title: "The Proposal",
+      text: "A magical moment as we got engaged and decided to spend the rest of our lives by each other's side.",
+      year: "Dec 2025",
     },
     {
       title: "Forever Begins",
-      text: "Now we begin our next chapter, and we would love to celebrate it with you.",
-      year: "2026",
+      text: "We are finally tying the knot and can't wait to celebrate our wedding with all of you.",
+      year: "July 2026",
     },
   ],
   travel: {
-    nearestAirport: "Chhatrapati Shivaji Maharaj International Airport (BOM)",
-    nearestStation: "Navi Mumbai Railway Station",
-    suggestedStay: "Marriott Hotel, Navi Mumbai",
+    airports: [
+      { name: "Navi Mumbai International Airport (NMIA)", note: "Closer" },
+      { name: "Chhatrapati Shivaji Maharaj International Airport (BOM)", note: "" },
+    ],
+    nearestStation: "Turbhe Railway Station",
   },
-  dressCode: {
-    title: "Classic Indian Formal",
-    notes:
-      "Pastels, gold accents, and elegant festive wear are encouraged. Please avoid all-white outfits.",
-  },
-  gifts:
-    "Your presence is the greatest gift. If you wish to bless us further, a contribution towards our new journey together would be deeply appreciated.",
+  gifts: "Please, no gifts. Your presence at our wedding and your loving blessings are the greatest gifts we could ask for.",
   faqs: [
     {
-      q: "Can I bring a plus one?",
-      a: "Please refer to your invitation. If additional guests are included, you can confirm them in RSVP.",
+      q: "Are kids welcome?",
+      a: "Yes, we would love to celebrate with your little ones. Please let us know if they need any special accommodations.",
     },
     {
-      q: "When should I RSVP by?",
-      a: "Please submit your RSVP by June 1, 2026 so we can plan all arrangements smoothly.",
-    },
-    {
-      q: "Will parking be available?",
-      a: "Yes, valet and self-parking details will be shared closer to the date.",
+      q: "What time should I arrive?",
+      a: "We recommend arriving 30 minutes prior to the start of the ceremonies so you can comfortably find a seat.",
     },
   ],
 } as const;

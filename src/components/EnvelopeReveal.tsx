@@ -183,8 +183,8 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                     }}
                                 >
                                     <Image
-                                        src="/wax_seal_transparent_yd.png"
-                                        alt="Open Invitation Y&D"
+                                        src="/wax_seal_transparent.png"
+                                        alt="Open Invitation"
                                         fill
                                         className="object-contain drop-shadow-2xl"
                                         priority

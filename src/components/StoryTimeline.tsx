@@ -18,7 +18,7 @@ export default function StoryTimeline() {
           <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#C5A46D] mb-6 block">Our Journey</span>
           <h2 className="font-script text-6xl md:text-[6rem] mb-8 text-[#2D3A3A] leading-none">Love Story</h2>
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/gold_divider.png`}
+            src="/gold_divider.png"
             alt="divider"
             width={192}
             height={18}

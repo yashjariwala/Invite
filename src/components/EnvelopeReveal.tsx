@@ -168,7 +168,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                     }}
                                 >
                                     <Image
-                                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/wax_seal_transparent.png`}
+                                        src="/wax_seal_transparent.png"
                                         alt="Open Invitation"
                                         fill
                                         className="object-contain drop-shadow-2xl"

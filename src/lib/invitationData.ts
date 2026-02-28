@@ -9,8 +9,8 @@ export type EventInfo = {
 
 export const invitationData = {
   couple: {
-    bride: "Yash",
-    groom: "Dhruvi",
+    groom: "Yash",
+    bride: "Dhruvi",
     shortMonogram: "Y & D",
     date: "July 4th & 5th, 2026",
     time: "10:30 AM",
@@ -31,7 +31,7 @@ export const invitationData = {
     },
     {
       title: "Reception",
-      dateLabel: "Monday, July 6, 2026",
+      dateLabel: "Monday, July 5, 2026",
       timeLabel: "7:00 PM onwards",
       venue: "Marriott Hotel",
       address: "Navi Mumbai, Maharashtra, India",

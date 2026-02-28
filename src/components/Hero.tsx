@@ -39,14 +39,14 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-transparent to-[#FAF9F6] z-0" />
 
       <div className="relative z-10 text-center px-4 flex flex-col items-center max-w-3xl">
-        <motion.span
+        <motion.p
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1 }}
-          className="font-serif text-[#2D3A3A] tracking-[0.2em] sm:tracking-[0.25em] text-xs sm:text-sm md:text-base uppercase mb-10 xl:mb-14 font-medium"
+          className="font-serif text-[#C5A46D] text-lg sm:text-xl md:text-2xl mb-8 xl:mb-12 font-medium"
         >
-          {invitationData.heroSubtitle}
-        </motion.span>
+          {invitationData.invocation}
+        </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}

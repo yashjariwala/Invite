@@ -67,6 +67,11 @@ export const invitationData = {
     ],
     nearestStation: "Turbhe Railway Station",
   },
+  accommodation: {
+    hotel: "Marriott Hotel",
+    checkIn: "July 4th, 2026 (After 1:00 PM)",
+    checkOut: "July 6th, 2026 (12:00 PM Morning)",
+  },
   gifts: "Please, no gifts. Your presence at our wedding and your loving blessings are the greatest gifts we could ask for.",
   faqs: [
     {

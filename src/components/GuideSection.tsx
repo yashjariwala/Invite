@@ -6,7 +6,7 @@ import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
 
 export default function GuideSection() {
-  const { travel, gifts, faqs } = invitationData;
+  const { travel, accommodation, gifts, faqs } = invitationData;
 
   return (
     <section id="guide" className="py-24 px-4 bg-[#f4ebd9] border-b border-[#e3dccf]">
@@ -33,10 +33,10 @@ export default function GuideSection() {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-6 mb-10">
+        <div className="grid lg:grid-cols-3 gap-6 mb-10">
           <InfoCard title="Travel">
             <div className="mb-3">
-              <span className="font-medium block mb-1">Nearest Airports:</span>
+              <span className="font-medium block mb-1 text-[#2D3A3A]">Nearest Airports:</span>
               <ul className="list-disc list-inside space-y-1 text-left inline-block">
                 {travel.airports.map((airport) => (
                   <li key={airport.name}>
@@ -45,7 +45,15 @@ export default function GuideSection() {
                 ))}
               </ul>
             </div>
-            <p><span className="font-medium">Nearest Station:</span> {travel.nearestStation}</p>
+            <p><span className="font-medium text-[#2D3A3A]">Nearest Station:</span> {travel.nearestStation}</p>
+          </InfoCard>
+
+          <InfoCard title="Accommodation">
+            <p className="font-serif text-[#C5A46D] text-xl mb-3">{accommodation.hotel}</p>
+            <div className="space-y-2 text-left inline-block">
+              <p><span className="font-medium text-[#2D3A3A]">Check-in:</span> {accommodation.checkIn}</p>
+              <p><span className="font-medium text-[#2D3A3A]">Check-out:</span> {accommodation.checkOut}</p>
+            </div>
           </InfoCard>
 
           <InfoCard title="Gifts">

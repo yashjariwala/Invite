@@ -69,14 +69,21 @@ export default function GuideSection() {
 function InfoCard({ title, children }: { title: string; children: ReactNode }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.98, y: 24 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7 }}
-      className="bg-[#FAF9F6] p-8 text-center flex flex-col items-center border border-[#e6dece] shadow-[0_20px_50px_-40px_rgba(0,0,0,0.45)]"
+      transition={{ duration: 0.8 }}
+      className="relative bg-white p-6 md:p-8 shadow-lg shadow-[#C5A46D]/5 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-500 w-full h-full"
     >
-      <h3 className="font-serif text-3xl italic text-[#C5A46D] mb-5">{title}</h3>
-      <div className="space-y-3 font-sans text-sm leading-relaxed text-[#5c5c5c]">{children}</div>
+      {/* Luxury stationery inner borders */}
+      <div className="absolute inset-2 md:inset-3 border border-[#C5A46D]/20 pointer-events-none" />
+      <div className="absolute inset-[12px] md:inset-[18px] border border-[#C5A46D]/10 pointer-events-none" />
+
+      <h3 className="font-serif text-2xl md:text-3xl text-[#C5A46D] mb-3 mt-1 leading-tight">{title}</h3>
+      {/* Elegant divider */}
+      <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#C5A46D]/60 to-transparent mb-6" />
+
+      <div className="space-y-3 font-sans text-xs md:text-sm leading-relaxed text-[#5c5c5c] relative z-10 w-full">{children}</div>
     </motion.article>
   );
 }

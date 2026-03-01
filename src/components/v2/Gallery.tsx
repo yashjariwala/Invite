@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const photos = [
-  "/photo5.webp",
-  "/photo4.webp",
-  "/photo3.webp",
-  "/photo2.webp",
   "/photo1.webp",
+  "/photo2.webp",
+  "/photo3.webp",
+  "/photo4.webp",
+  "/photo5.webp",
 ];
 
 export default function Gallery() {

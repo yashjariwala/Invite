@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
+import IndianCard from "./IndianCard";
 
 export default function GuideSection() {
   const { travel, accommodation, gifts, faqs } = invitationData;
@@ -68,34 +69,36 @@ export default function GuideSection() {
 
 function InfoCard({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <motion.article
+    <motion.div
       initial={{ opacity: 0, scale: 0.98, y: 24 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8 }}
-      className="relative bg-white pt-14 pb-8 px-6 md:pt-16 md:pb-10 md:px-8 shadow-lg shadow-[#4C1215]/5 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-500 w-full h-full rounded-t-full rounded-b-xl border-b-4 border-[#D4AF37]"
+      className="w-full h-full flex"
     >
-      {/* Arched inner borders */}
-      <div className="absolute inset-2 md:inset-3 border-2 border-[#D4AF37]/30 rounded-t-full rounded-b-lg pointer-events-none z-0" />
-      <div className="absolute inset-[14px] md:inset-[20px] border border-[#D4AF37]/20 rounded-t-full rounded-b-md pointer-events-none z-0" />
+      <IndianCard className="w-full h-full">
+        <div className="flex flex-col items-center text-center h-full">
+          {/* Top Decorative Motif */}
+          <div className="text-[#D4AF37] opacity-80 z-0 mb-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
+            </svg>
+          </div>
 
-      {/* Top Decorative Motif */}
-      <div className="absolute top-6 md:top-8 left-1/2 -translate-x-1/2 text-[#D4AF37] opacity-80 z-0">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
-        </svg>
-      </div>
+          <h3 className="font-serif text-2xl md:text-3xl text-[#D4AF37] mb-3 leading-tight font-semibold relative z-10">{title}</h3>
 
-      <h3 className="font-serif text-2xl md:text-3xl text-[#D4AF37] mb-3 mt-4 leading-tight font-semibold relative z-10">{title}</h3>
+          {/* Ornate Indian Divider */}
+          <div className="flex items-center gap-2 mb-6 relative z-10">
+            <div className="w-8 md:w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
+            <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+            <div className="w-8 md:w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
+          </div>
 
-      {/* Ornate Indian Divider */}
-      <div className="flex items-center gap-2 mb-6 relative z-10">
-        <div className="w-8 md:w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
-        <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
-        <div className="w-8 md:w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
-      </div>
-
-      <div className="flex-grow flex flex-col items-center space-y-3 font-sans text-xs md:text-sm leading-relaxed text-[#5c5c5c] relative z-10 w-full">{children}</div>
-    </motion.article>
+          <div className="flex-grow flex flex-col items-center space-y-3 font-sans text-xs md:text-sm leading-relaxed text-[#5c5c5c] relative z-10 w-full justify-center">
+            {children}
+          </div>
+        </div>
+      </IndianCard>
+    </motion.div>
   );
 }

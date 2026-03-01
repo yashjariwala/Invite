@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
+import IndianCard from "./IndianCard";
 
 export default function EventTimeline() {
     return (
@@ -105,44 +106,39 @@ export default function EventTimeline() {
 
 function EventCard({ event, isEven, mobile = false }: { event: any, isEven: boolean, mobile?: boolean }) {
     return (
-        <div className={`
-      relative bg-white pt-12 pb-6 px-6 md:pt-14 md:pb-8 shadow-md border-b-[3px] border-[#D4AF37] max-w-[340px] w-full 
-      hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden rounded-t-full rounded-b-xl text-center
-    `}>
-            {/* Arched inner borders */}
-            <div className="absolute inset-1.5 md:inset-2 border-2 border-[#D4AF37]/30 rounded-t-full rounded-b-lg pointer-events-none z-0" />
-            <div className="absolute inset-[10px] md:inset-[14px] border border-[#D4AF37]/20 rounded-t-full rounded-b-md pointer-events-none z-0" />
+        <div className="w-full">
+            <IndianCard className="!max-w-[340px]">
+                <div className="flex flex-col items-center text-center w-full relative z-10 px-2">
+                    {/* Top Decorative Motif */}
+                    <div className="text-[#D4AF37] opacity-80 z-10 mb-3 transition-transform duration-500 hover:scale-110">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
+                        </svg>
+                    </div>
 
-            {/* Top Decorative Motif */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[#D4AF37] opacity-80 z-10">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
-                </svg>
-            </div>
+                    {/* Time Label */}
+                    <div className="w-full flex justify-center mb-3">
+                        <p className="font-sans tracking-[0.25em] text-[10px] md:text-xs text-[#D4AF37] uppercase font-bold bg-[#fdf5ec] px-3 py-1 rounded-sm border border-[#D4AF37]/20 shadow-sm">
+                            {event.time}
+                        </p>
+                    </div>
 
-            <div className="relative z-10 w-full flex flex-col items-center">
-                {/* Time Label */}
-                <div className="w-full flex justify-center mb-3">
-                    <p className="font-sans tracking-[0.25em] text-[10px] md:text-xs text-[#D4AF37] uppercase font-bold bg-[#fdf5ec] px-3 py-1 rounded-sm border border-[#D4AF37]/20 shadow-sm">
-                        {event.time}
+                    {/* Title */}
+                    <h4 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 leading-snug font-semibold w-full text-center">{event.title}</h4>
+
+                    {/* Divider */}
+                    <div className="flex items-center justify-center gap-1.5 mb-4 w-full">
+                        <div className="w-10 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
+                        <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+                        <div className="w-10 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
+                    </div>
+
+                    {/* Description */}
+                    <p className="font-sans text-xs md:text-sm text-[#5c5c5c] leading-relaxed w-full text-center">
+                        {event.description}
                     </p>
                 </div>
-
-                {/* Title */}
-                <h4 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 leading-snug font-semibold w-full text-center">{event.title}</h4>
-
-                {/* Divider */}
-                <div className="flex items-center justify-center gap-1.5 mb-4 w-full">
-                    <div className="w-10 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
-                    <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
-                    <div className="w-10 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
-                </div>
-
-                {/* Description */}
-                <p className="font-sans text-xs md:text-sm text-[#5c5c5c] leading-relaxed w-full text-center">
-                    {event.description}
-                </p>
-            </div>
+            </IndianCard>
         </div>
     );
 }

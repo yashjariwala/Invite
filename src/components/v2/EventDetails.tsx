@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
+import IndianCard from "./IndianCard";
 
 export default function EventDetails() {
   return (
@@ -76,7 +76,6 @@ function EventCard({
   time,
   venue,
   address,
-  mapUrl,
   delay,
 }: {
   title: string;
@@ -93,49 +92,61 @@ function EventCard({
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay }}
-      className="relative bg-white pt-16 pb-8 px-6 md:pt-20 md:pb-12 md:px-10 shadow-xl shadow-[#4C1215]/5 flex flex-col items-center text-center overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 max-w-md mx-auto w-full rounded-t-full rounded-b-xl border-b-[3px] border-[#D4AF37]"
+      className="w-full flex"
     >
-      {/* Traditional Arched inner borders */}
-      <div className="absolute inset-2 md:inset-3 border-2 border-[#D4AF37]/30 rounded-t-full rounded-b-lg pointer-events-none z-0" />
-      <div className="absolute inset-[14px] md:inset-[20px] border border-[#D4AF37]/20 rounded-t-full rounded-b-md pointer-events-none z-0" />
+      <IndianCard>
+        <div className="flex flex-col items-center text-center w-full h-full justify-between">
+          <div className="flex flex-col items-center w-full">
+            {/* Top Decorative Motif */}
+            <div className="text-[#D4AF37] opacity-80 z-10 mb-4 transition-transform duration-500 hover:scale-110">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
+              </svg>
+            </div>
 
-      {/* Top Decorative Motif */}
-      <div className="absolute top-6 md:top-8 text-[#D4AF37] opacity-80 z-10">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
-        </svg>
-      </div>
+            <h3 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 leading-tight font-semibold relative z-10 w-full px-2">
+              {title}
+            </h3>
 
-      <h3 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 mt-4 leading-tight font-semibold relative z-10">
-        {title}
-      </h3>
+            {/* Ornate Indian Divider */}
+            <div className="flex items-center gap-2 mb-8 relative z-10 w-full justify-center">
+              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]" />
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37] opacity-50" />
+              <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+              <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]" />
+            </div>
+          </div>
 
-      {/* Ornate Indian Divider */}
-      <div className="flex items-center gap-2 mb-6 relative z-10">
-        <div className="w-8 md:w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
-        <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
-        <div className="w-8 md:w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
-      </div>
+          <div className="space-y-6 w-full flex-grow flex flex-col items-center justify-center relative z-10">
+            <div className="flex flex-col items-center gap-1 w-full relative">
+              <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 opacity-20 pointer-events-none">
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+              </div>
+              <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Date</p>
+              <p className="font-serif text-lg md:text-xl text-[#4C1215] italic">{date}</p>
+            </div>
 
-      <div className="space-y-5 md:space-y-6 w-full flex-grow flex flex-col items-center relative z-10">
-        <div className="flex flex-col items-center gap-1">
-          <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-medium mb-0.5">Date</p>
-          <p className="font-serif text-base md:text-lg text-[#4C1215] italic">{date}</p>
+            <div className="flex flex-col items-center gap-1 w-full relative">
+              <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 opacity-20 pointer-events-none">
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+              </div>
+              <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Time</p>
+              <p className="font-serif text-lg md:text-xl text-[#4C1215] italic">{time}</p>
+            </div>
+
+            <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent mt-2 mb-1" />
+
+            <div className="flex flex-col items-center gap-1 pb-2">
+              <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Venue</p>
+              <p className="font-serif text-xl md:text-2xl text-[#4C1215] mt-1">{venue}</p>
+              <p className="font-sans text-[9px] md:text-[10px] text-[#8a8a8a] mt-2 tracking-widest uppercase">{address}</p>
+            </div>
+          </div>
         </div>
-
-        <div className="flex flex-col items-center gap-1">
-          <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-medium mb-0.5">Time</p>
-          <p className="font-serif text-base md:text-lg text-[#4C1215] italic">{time}</p>
-        </div>
-
-        <div className="w-6 h-[1px] bg-[#D4AF37]/30 mt-2 mb-1" />
-
-        <div className="flex flex-col items-center gap-1 pb-2 md:pb-4">
-          <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-medium mb-0.5">Venue</p>
-          <p className="font-serif text-xl md:text-2xl text-[#4C1215]">{venue}</p>
-          <p className="font-sans text-[9px] md:text-[10px] text-[#8a8a8a] mt-1 tracking-widest uppercase">{address}</p>
-        </div>
-      </div>
+      </IndianCard>
     </motion.div>
   );
 }

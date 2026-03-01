@@ -1,0 +1,147 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { invitationData } from "@/lib/invitationData";
+
+export default function EventTimeline() {
+    return (
+        <section id="timeline" className="py-24 px-4 bg-[#fdf5ec] text-[#4C1215] relative overflow-hidden">
+            <div className="max-w-4xl mx-auto relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8 }}
+                    className="text-center mb-16 md:mb-24 flex flex-col items-center"
+                >
+                    <span className="font-sans text-xs uppercase tracking-[0.4em] text-[#D4AF37] mb-6 block">Order of Events</span>
+                    <h2 className="font-script text-5xl md:text-[5rem] mb-6 text-[#4C1215] leading-tight">Weekend Itinerary</h2>
+
+                    <div className="flex items-center justify-center w-full my-6 opacity-75">
+                        <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 md:w-48">
+                            <path d="M0 12H65" stroke="#D4AF37" strokeWidth="0.75" />
+                            <path d="M115 12H180" stroke="#D4AF37" strokeWidth="0.75" />
+                            <path d="M75 12L90 4L105 12L90 20L75 12Z" stroke="#D4AF37" strokeWidth="1" />
+                            <path d="M82 12L90 7.5L98 12L90 16.5L82 12Z" fill="#D4AF37" />
+                            <circle cx="90" cy="12" r="1.5" fill="#fdf5ec" />
+                        </svg>
+                    </div>
+                </motion.div>
+
+                <div className="space-y-20 lg:space-y-32 relative">
+                    {/* Main vertical center line for desktop */}
+                    <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1px] bg-[#D4AF37]/30 -translate-x-1/2 rounded-full" />
+                    {/* Main vertical left line for mobile */}
+                    <div className="md:hidden absolute left-[15px] top-4 bottom-4 w-[1px] bg-[#D4AF37]/30 rounded-full" />
+
+                    {invitationData.timelineDays.map((day) => (
+                        <div key={day.date} className="relative z-10">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.6 }}
+                                className="flex justify-center mb-12 md:mb-16"
+                            >
+                                <div className="bg-[#fdf5ec] border border-[#e6dece] px-6 md:px-10 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-full text-center relative z-20">
+                                    <h3 className="font-serif text-xl md:text-2xl text-[#D4AF37] italic tracking-wide">
+                                        {day.date}
+                                    </h3>
+                                </div>
+                            </motion.div>
+
+                            <div className="space-y-12 md:space-y-16">
+                                {day.events.map((event, eventIdx) => {
+                                    const isEven = eventIdx % 2 === 0;
+                                    return (
+                                        <motion.div
+                                            key={event.title}
+                                            initial={{ opacity: 0, y: 30 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true, margin: "-50px" }}
+                                            transition={{ duration: 0.6, delay: eventIdx * 0.1 }}
+                                            className="relative flex items-center group px-8 md:px-0 w-full"
+                                        >
+                                            {/* Node dot on the timeline line */}
+                                            <div className="absolute left-[9px] md:left-1/2 -translate-y-1/2 md:-translate-x-1/2 top-1/2 w-4 h-4 bg-white border-[3px] border-[#D4AF37] rounded-full z-10 group-hover:bg-[#D4AF37] transition-colors duration-500 shadow-[0_0_0_6px_#fdf5ec]" />
+
+                                            {/* Horizontal connecting line (Desktop only) */}
+                                            <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-12 h-[1px] bg-[#D4AF37]/20 z-0
+                        ${isEven ? 'right-1/2 mr-3' : 'left-1/2 ml-3'}
+                      `} />
+
+                                            {/* Desktop layout: alternating left/right strictly forced to their columns */}
+                                            <div className="hidden md:flex w-full items-center">
+                                                {isEven ? (
+                                                    <div className="w-1/2 flex justify-end pr-10 lg:pr-16">
+                                                        <EventCard event={event} isEven={true} />
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <div className="w-1/2" />
+                                                        <div className="w-1/2 flex justify-start pl-10 lg:pl-16">
+                                                            <EventCard event={event} isEven={false} />
+                                                        </div>
+                                                    </>
+                                                )}
+                                            </div>
+
+                                            {/* Mobile layout: all cards push right of the line */}
+                                            <div className="md:hidden w-full pl-6 pb-2">
+                                                <EventCard event={event} isEven={false} mobile />
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function EventCard({ event, isEven, mobile = false }: { event: any, isEven: boolean, mobile?: boolean }) {
+    return (
+        <div className={`
+      relative bg-white pt-12 pb-6 px-6 md:pt-14 md:pb-8 shadow-md border-b-[3px] border-[#D4AF37] max-w-[340px] w-full 
+      hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden rounded-t-full rounded-b-xl text-center
+    `}>
+            {/* Arched inner borders */}
+            <div className="absolute inset-1.5 md:inset-2 border-2 border-[#D4AF37]/30 rounded-t-full rounded-b-lg pointer-events-none z-0" />
+            <div className="absolute inset-[10px] md:inset-[14px] border border-[#D4AF37]/20 rounded-t-full rounded-b-md pointer-events-none z-0" />
+
+            {/* Top Decorative Motif */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[#D4AF37] opacity-80 z-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
+                </svg>
+            </div>
+
+            <div className="relative z-10 w-full flex flex-col items-center">
+                {/* Time Label */}
+                <div className="w-full flex justify-center mb-3">
+                    <p className="font-sans tracking-[0.25em] text-[10px] md:text-xs text-[#D4AF37] uppercase font-bold bg-[#fdf5ec] px-3 py-1 rounded-sm border border-[#D4AF37]/20 shadow-sm">
+                        {event.time}
+                    </p>
+                </div>
+
+                {/* Title */}
+                <h4 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 leading-snug font-semibold w-full text-center">{event.title}</h4>
+
+                {/* Divider */}
+                <div className="flex items-center justify-center gap-1.5 mb-4 w-full">
+                    <div className="w-10 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
+                    <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+                    <div className="w-10 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
+                </div>
+
+                {/* Description */}
+                <p className="font-sans text-xs md:text-sm text-[#5c5c5c] leading-relaxed w-full text-center">
+                    {event.description}
+                </p>
+            </div>
+        </div>
+    );
+}

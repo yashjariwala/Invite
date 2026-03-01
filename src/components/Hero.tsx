@@ -31,7 +31,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-[100svh] min-h-[650px] flex flex-col items-center justify-between overflow-hidden bg-[#FAF9F6]">
+    <section className="relative h-[100svh] min-h-[650px] flex flex-col items-center justify-between overflow-hidden bg-[#FAF9F6] pt-20 md:pt-24">
       {/* Background Layer */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <Image src="/mandala_pattern.png" alt="Floral Frame" fill className="object-cover opacity-40 mix-blend-multiply" priority />

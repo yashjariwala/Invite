@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isDone, setIsDone] = useState(false);
+    const [fullyDone, setFullyDone] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const timeoutRef = useRef<number | null>(null);
 
@@ -60,12 +61,12 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
         }, 3800);
     };
 
-    if (isDone) return null;
+    if (fullyDone) return null;
 
     const zoomScale = isMobile ? 3.25 : 3.85;
 
     return (
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={() => setFullyDone(true)}>
             {!isDone && (
                 <motion.div
                     initial={{ opacity: 1, scale: 1 }}
@@ -73,9 +74,9 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         opacity: isOpen ? 0 : 1,
                         scale: isOpen ? zoomScale : 1,
                     }}
-                    exit={{ opacity: 0 }}
+                    exit={{ opacity: 0, transition: { duration: 0 } }}
                     transition={{
-                        opacity: { duration: 1.02, delay: 1.42, ease: "easeIn" },
+                        opacity: { duration: 1.2, delay: 1.5, ease: "easeIn" },
                         scale: { duration: 1.72, delay: 0.82, ease: [0.22, 0.61, 0.36, 1] },
                     }}
                     className="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto transform-gpu transform-origin-center overflow-hidden"
@@ -120,8 +121,13 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                     >
                         {/* Left flap */}
                         <div
-                            className="absolute inset-0 w-full h-full z-10"
-                            style={{ filter: "drop-shadow(3px 0px 10px rgba(0,0,0,0.15))" }}
+                            className="absolute inset-0 w-full h-full z-10 transform-gpu"
+                            style={{
+                                filter: "drop-shadow(3px 0px 10px rgba(0,0,0,0.15))",
+                                willChange: "transform",
+                                transform: "translateZ(0)",
+                                backfaceVisibility: "hidden",
+                            }}
                         >
                             <div
                                 className="w-full h-full bg-[#8A151B] envelope-texture"
@@ -131,8 +137,13 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
 
                         {/* Right flap */}
                         <div
-                            className="absolute inset-0 w-full h-full z-10"
-                            style={{ filter: "drop-shadow(-3px 0px 10px rgba(0,0,0,0.15))" }}
+                            className="absolute inset-0 w-full h-full z-10 transform-gpu"
+                            style={{
+                                filter: "drop-shadow(-3px 0px 10px rgba(0,0,0,0.15))",
+                                willChange: "transform",
+                                transform: "translateZ(0)",
+                                backfaceVisibility: "hidden",
+                            }}
                         >
                             <div
                                 className="w-full h-full bg-[#8A151B] envelope-texture"
@@ -142,8 +153,13 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
 
                         {/* Bottom flap */}
                         <div
-                            className="absolute inset-0 w-full h-full z-20"
-                            style={{ filter: "drop-shadow(0px -5px 15px rgba(0,0,0,0.2))" }}
+                            className="absolute inset-0 w-full h-full z-20 transform-gpu"
+                            style={{
+                                filter: "drop-shadow(0px -5px 15px rgba(0,0,0,0.2))",
+                                willChange: "transform",
+                                transform: "translateZ(0)",
+                                backfaceVisibility: "hidden",
+                            }}
                         >
                             <div
                                 className="w-full h-full bg-[#730E13] envelope-texture"

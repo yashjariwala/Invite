@@ -87,31 +87,21 @@ export default function Hero() {
         >
           {invitationData.cityLabel}
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.82, delay: 2.25 }}
-          className="mt-10 flex flex-col sm:flex-row gap-3"
-        >
-          <a
-            href="#details"
-            className="border border-[#C5A46D] text-[#C5A46D] px-8 py-3 text-[10px] tracking-[0.24em] uppercase hover:bg-[#C5A46D] hover:text-white transition-colors"
-          >
-            View Events
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2.55 }}
-          className="absolute -bottom-20 sm:-bottom-24 animate-bounce flex flex-col items-center gap-2"
-        >
-          <span className="text-[9px] uppercase tracking-[0.3em] text-[#8a8a8a]">Scroll</span>
-          <div className="w-[1px] h-12 sm:h-16 bg-gradient-to-b from-[#C5A46D] to-transparent" />
-        </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 2.55 }}
+        className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-2 cursor-pointer z-30"
+        onClick={() => {
+          const el = document.getElementById('details');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+      >
+        <span className="text-xs font-bold uppercase tracking-[0.4em] text-[#C5A46D] drop-shadow-md bg-white/40 px-3 py-1 rounded-full backdrop-blur-sm">Scroll</span>
+        <div className="w-[2px] h-12 sm:h-16 bg-gradient-to-b from-[#C5A46D] to-transparent" />
+      </motion.div>
 
       {!shouldReduceMotion && (
         <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden mix-blend-multiply">

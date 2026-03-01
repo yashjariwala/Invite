@@ -21,7 +21,7 @@ export default function Hero() {
     if (typeof window === "undefined") return;
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const petalCount = isMobile ? 10 : 14;
+    const petalCount = isMobile ? 30 : 50;
 
     const petalColors = ["bg-[#B31B1B]/70", "bg-[#FF8C00]/70", "bg-[#FFD700]/70", "bg-[#8B0000]/60"];
 

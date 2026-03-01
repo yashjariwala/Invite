@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
 
 export default function EventTimeline() {
@@ -113,7 +114,7 @@ function EventCard({ event, isEven, mobile = false }: { event: any, isEven: bool
             <div className="absolute inset-[10px] md:inset-[14px] border border-[#D4AF37]/20 rounded-t-full rounded-b-md pointer-events-none z-0" />
 
             {/* Top Decorative Motif */}
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[#D4AF37] opacity-80 z-0">
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[#D4AF37] opacity-80 z-10">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
                 </svg>

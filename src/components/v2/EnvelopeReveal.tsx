@@ -57,7 +57,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
 
         timeoutRef.current = window.setTimeout(() => {
             setIsDone(true);
-        }, 3000);
+        }, 3800);
     };
 
     if (isDone) return null;

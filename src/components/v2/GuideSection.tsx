@@ -49,7 +49,7 @@ export default function GuideSection() {
           </InfoCard>
 
           <InfoCard title="Accommodation">
-            <p className="font-serif text-[#D4AF37] text-xl mb-4">{accommodation.hotel}</p>
+            <p className="font-serif text-[#D4AF37] text-xl mb-4 italic">{accommodation.hotel}</p>
             <div className="space-y-3 flex flex-col items-center">
               <p><span className="font-medium text-[#4C1215] block mb-1">Check-in:</span> {accommodation.checkIn}</p>
               <p><span className="font-medium text-[#4C1215] block mb-1">Check-out:</span> {accommodation.checkOut}</p>

@@ -94,7 +94,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Scroll Indicator Container */}
-      <div className="w-full flex-1 flex flex-col justify-end items-center md:items-start md:pl-12 lg:pl-20 pb-6 sm:pb-8 md:pb-6 relative z-30 pointer-events-none">
+      <div className="w-full flex-1 flex flex-col justify-end items-center md:items-start md:absolute md:bottom-24 md:left-12 lg:left-20 pb-6 sm:pb-8 md:pb-0 z-30 pointer-events-none">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

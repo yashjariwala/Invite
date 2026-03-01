@@ -14,12 +14,32 @@ export default function AudioPlayer() {
         const handlePlay = () => setIsPlaying(true);
         const handlePause = () => setIsPlaying(false);
 
+        // Track user's intentional state versus automatic tab pause state
+        let wasPlayingBeforeHidden = false;
+
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                // User left the tab - save state and pause
+                wasPlayingBeforeHidden = !audio.paused;
+                if (wasPlayingBeforeHidden) {
+                    audio.pause();
+                }
+            } else {
+                // User returned to tab - resume if it was playing before
+                if (wasPlayingBeforeHidden) {
+                    audio.play().catch(console.error);
+                }
+            }
+        };
+
         audio.addEventListener("play", handlePlay);
         audio.addEventListener("pause", handlePause);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
 
         return () => {
             audio.removeEventListener("play", handlePlay);
             audio.removeEventListener("pause", handlePause);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
     }, []);
 

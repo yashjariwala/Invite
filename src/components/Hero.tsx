@@ -31,14 +31,18 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-[#FAF9F6] pt-16">
+    <section className="relative h-[100svh] min-h-[650px] flex flex-col items-center justify-between overflow-hidden bg-[#FAF9F6]">
+      {/* Background Layer */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <Image src="/mandala_pattern.png" alt="Floral Frame" fill className="object-cover opacity-40 mix-blend-multiply" priority />
       </div>
-
       <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-transparent to-[#FAF9F6] z-0" />
 
-      <div className="relative z-10 text-center px-4 flex flex-col items-center max-w-3xl">
+      {/* Top Spacer to push center content perfectly to the middle mathematically */}
+      <div className="w-full flex-1 pointer-events-none" />
+
+      {/* Centered Text Block */}
+      <div className="relative z-10 text-center px-4 flex flex-col items-center max-w-3xl shrink-0 py-8 lg:py-12">
         <motion.p
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,19 +93,22 @@ export default function Hero() {
         </motion.p>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.55 }}
-        className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-2 cursor-pointer z-30"
-        onClick={() => {
-          const el = document.getElementById('details');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-      >
-        <span className="text-xs font-bold uppercase tracking-[0.4em] text-[#C5A46D] drop-shadow-md bg-white/40 px-3 py-1 rounded-full backdrop-blur-sm">Scroll</span>
-        <div className="w-[2px] h-12 sm:h-16 bg-gradient-to-b from-[#C5A46D] to-transparent" />
-      </motion.div>
+      {/* Bottom Scroll Indicator Container */}
+      <div className="w-full flex-1 flex flex-col justify-end items-center md:items-start md:pl-12 lg:pl-20 pb-6 sm:pb-8 md:pb-12 relative z-30 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2.55 }}
+          className="animate-bounce flex flex-col items-center gap-2 cursor-pointer pointer-events-auto"
+          onClick={() => {
+            const el = document.getElementById('details');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[#C5A46D] drop-shadow-md bg-white/40 px-3 py-1 rounded-full backdrop-blur-sm">Scroll</span>
+          <div className="w-[1.5px] md:w-[2px] h-10 sm:h-12 md:h-16 bg-gradient-to-b from-[#C5A46D] to-transparent" />
+        </motion.div>
+      </div>
 
       {!shouldReduceMotion && (
         <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden mix-blend-multiply">

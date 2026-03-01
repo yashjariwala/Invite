@@ -10,7 +10,7 @@ const navItems = [
 export default function QuickNav() {
   return (
     <div className="fixed top-0 inset-x-0 z-40 pointer-events-none">
-      <nav className="pointer-events-auto max-w-max mx-auto mt-4 px-3 sm:px-4 py-2 rounded-full border border-[#d7cfbe] bg-[#faf9f6]/84 backdrop-blur-md shadow-[0_12px_30px_-20px_rgba(0,0,0,0.45)]">
+      <nav className="pointer-events-auto max-w-max mx-auto mt-4 px-3 sm:px-4 py-2 rounded-full border border-[#d7cfbe] bg-[#FAF9F6] shadow-[0_12px_30px_-20px_rgba(0,0,0,0.45)]">
         <ul className="flex items-center gap-1 sm:gap-2 overflow-x-auto hide-scrollbar">
           {navItems.map((link) => (
             <li key={link.href}>

@@ -35,24 +35,24 @@ export default function GuideSection() {
 
         <div className="grid lg:grid-cols-3 gap-6 mb-10">
           <InfoCard title="Travel">
-            <div className="mb-3">
-              <span className="font-medium block mb-1 text-[#2D3A3A]">Nearest Airports:</span>
-              <ul className="list-disc list-inside space-y-1 text-left inline-block">
+            <div className="mb-3 flex flex-col items-center">
+              <span className="font-medium block mb-2 text-[#2D3A3A]">Nearest Airports:</span>
+              <ul className="space-y-1 text-center flex flex-col items-center">
                 {travel.airports.map((airport) => (
-                  <li key={airport.name}>
-                    {airport.name} {airport.note && <span className="italic text-[#C5A46D]">({airport.note})</span>}
+                  <li key={airport.name} className="flex justify-center w-full">
+                    <span>{airport.name} {airport.note && <span className="italic text-[#C5A46D]">({airport.note})</span>}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <p><span className="font-medium text-[#2D3A3A]">Nearest Station:</span> {travel.nearestStation}</p>
+            <p className="mt-4"><span className="font-medium text-[#2D3A3A] block mb-1">Nearest Station:</span> {travel.nearestStation}</p>
           </InfoCard>
 
           <InfoCard title="Accommodation">
-            <p className="font-serif text-[#C5A46D] text-xl mb-3">{accommodation.hotel}</p>
-            <div className="space-y-2 text-left inline-block">
-              <p><span className="font-medium text-[#2D3A3A]">Check-in:</span> {accommodation.checkIn}</p>
-              <p><span className="font-medium text-[#2D3A3A]">Check-out:</span> {accommodation.checkOut}</p>
+            <p className="font-serif text-[#C5A46D] text-xl mb-4">{accommodation.hotel}</p>
+            <div className="space-y-3 flex flex-col items-center">
+              <p><span className="font-medium text-[#2D3A3A] block mb-1">Check-in:</span> {accommodation.checkIn}</p>
+              <p><span className="font-medium text-[#2D3A3A] block mb-1">Check-out:</span> {accommodation.checkOut}</p>
             </div>
           </InfoCard>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
 
@@ -90,31 +89,40 @@ function EventCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.98, y: 30 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay }}
-      className="bg-[#FAF9F6] p-8 md:p-12 shadow-md flex flex-col items-center text-center border-t-4 border-[#C5A46D]"
+      className="relative bg-white p-6 md:p-10 shadow-lg shadow-[#C5A46D]/5 flex flex-col items-center text-center overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-500 max-w-md mx-auto w-full"
     >
-      <h3 className="font-serif text-3xl md:text-4xl text-[#C5A46D] mb-10 italic">{title}</h3>
+      {/* Luxury stationery inner borders */}
+      <div className="absolute inset-2 md:inset-3 border border-[#C5A46D]/20 pointer-events-none" />
+      <div className="absolute inset-[12px] md:inset-[18px] border border-[#C5A46D]/10 pointer-events-none" />
 
-      <div className="space-y-6 w-full flex-grow">
-        <div className="flex flex-col items-center gap-2">
-          <Calendar className="w-5 h-5 text-[#C5A46D] mb-1" />
-          <p className="font-sans tracking-widest text-xs uppercase text-[#2D3A3A] font-light">{date}</p>
+      <h3 className="font-serif text-2xl md:text-3xl text-[#C5A46D] mb-3 mt-1 leading-tight">
+        {title}
+      </h3>
+
+      {/* Elegant divider */}
+      <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#C5A46D]/60 to-transparent mb-6" />
+
+      <div className="space-y-5 md:space-y-6 w-full flex-grow flex flex-col items-center">
+        <div className="flex flex-col items-center gap-1">
+          <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#C5A46D] font-medium mb-0.5">Date</p>
+          <p className="font-serif text-base md:text-lg text-[#2D3A3A] italic">{date}</p>
         </div>
 
-        <div className="flex flex-col items-center gap-2">
-          <Clock className="w-5 h-5 text-[#C5A46D] mb-1" />
-          <p className="font-sans tracking-widest text-xs uppercase text-[#2D3A3A] font-light">{time}</p>
+        <div className="flex flex-col items-center gap-1">
+          <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#C5A46D] font-medium mb-0.5">Time</p>
+          <p className="font-serif text-base md:text-lg text-[#2D3A3A] italic">{time}</p>
         </div>
 
-        <div className="w-12 h-[1px] bg-[#e3dccf] mx-auto my-8" />
+        <div className="w-6 h-[1px] bg-[#C5A46D]/30 mt-2 mb-1" />
 
-        <div className="flex flex-col items-center gap-2 pb-8">
-          <MapPin className="w-5 h-5 text-[#C5A46D] mb-1" />
-          <p className="font-serif text-2xl text-[#2D3A3A]">{venue}</p>
-          <p className="font-sans text-xs text-[#8a8a8a] mt-2 tracking-wide uppercase">{address}</p>
+        <div className="flex flex-col items-center gap-1 pb-2 md:pb-4">
+          <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#C5A46D] font-medium mb-0.5">Venue</p>
+          <p className="font-serif text-xl md:text-2xl text-[#2D3A3A]">{venue}</p>
+          <p className="font-sans text-[9px] md:text-[10px] text-[#8a8a8a] mt-1 tracking-widest uppercase">{address}</p>
         </div>
       </div>
     </motion.div>

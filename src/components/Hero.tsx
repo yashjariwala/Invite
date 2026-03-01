@@ -94,7 +94,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Scroll Indicator Container */}
-      <div className="w-full flex-1 flex flex-col justify-end items-center md:items-start md:pl-12 lg:pl-20 pb-6 sm:pb-8 md:pb-12 relative z-30 pointer-events-none">
+      <div className="w-full flex-1 flex flex-col justify-end items-center md:items-start md:pl-12 lg:pl-20 pb-6 sm:pb-8 md:pb-6 relative z-30 pointer-events-none">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -106,7 +106,7 @@ export default function Hero() {
           }}
         >
           <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[#C5A46D] drop-shadow-md bg-white/40 px-3 py-1 rounded-full backdrop-blur-sm">Scroll</span>
-          <div className="w-[1.5px] md:w-[2px] h-10 sm:h-12 md:h-16 bg-gradient-to-b from-[#C5A46D] to-transparent" />
+          <div className="w-[1.5px] md:w-[2px] h-10 sm:h-12 md:h-12 bg-gradient-to-b from-[#C5A46D] to-transparent" />
         </motion.div>
       </div>
 

@@ -2,6 +2,7 @@ import EnvelopeReveal from "@/components/EnvelopeReveal";
 import Hero from "@/components/Hero";
 import CountdownTimer from "@/components/CountdownTimer";
 import EventDetails from "@/components/EventDetails";
+import EventTimeline from "@/components/EventTimeline";
 import StoryTimeline from "@/components/StoryTimeline";
 import Gallery from "@/components/Gallery";
 import GuideSection from "@/components/GuideSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <CountdownTimer />
       <EventDetails />
+      <EventTimeline />
       <StoryTimeline />
       <Gallery />
       <GuideSection />

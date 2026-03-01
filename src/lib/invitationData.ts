@@ -38,6 +38,32 @@ export const invitationData = {
       mapUrl: "https://maps.app.goo.gl/search/Marriott+Hotel+Navi+Mumbai",
     },
   ] as EventInfo[],
+  timelineDays: [
+    {
+      date: "Saturday, July 4",
+      events: [
+        { time: "1:00 PM", title: "Check-in", description: "Settle in and relax." },
+        { time: "3:00 PM", title: "High Tea", description: "Enjoy light refreshments before the festivities begin." },
+        { time: "4:30 PM", title: "Wedding Ceremony (Lagna)", description: "The beautiful moment we tie the knot, followed by dinner." },
+      ],
+    },
+    {
+      date: "Sunday, July 5",
+      events: [
+        { time: "7:30 AM - 10:30 AM", title: "Breakfast", description: "Enjoy a relaxed morning breakfast." },
+        { time: "1:00 PM - 3:00 PM", title: "Lunch", description: "Join us for a delightful afternoon lunch." },
+        { time: "4:30 PM", title: "High Tea", description: "Enjoy light refreshments." },
+        { time: "7:00 PM", title: "Reception & Dinner", description: "An evening of celebration, dancing, and a grand feast." },
+      ],
+    },
+    {
+      date: "Monday, July 6",
+      events: [
+        { time: "7:30 AM - 10:00 AM", title: "Breakfast", description: "Enjoy a relaxed morning breakfast." },
+        { time: "12:00 PM", title: "Check-out", description: "Bid farewell with beautiful memories." },
+      ],
+    },
+  ],
   storyMoments: [
     {
       title: "How We Met",

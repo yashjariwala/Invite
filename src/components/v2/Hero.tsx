@@ -21,9 +21,9 @@ export default function Hero() {
     if (typeof window === "undefined") return;
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const petalCount = isMobile ? 30 : 50;
+    const petalCount = isMobile ? 15 : 25; // Optimized count since SVGs have a bit more draw overhead
 
-    const petalColors = ["bg-[#B31B1B]/70", "bg-[#FF8C00]/70", "bg-[#FFD700]/70", "bg-[#8B0000]/60"];
+    const petalColors = ["text-[#B31B1B]", "text-[#FF8C00]", "text-[#FFD700]", "text-[#8B0000]"];
 
     setPetals([...Array(petalCount)].map(() => ({
       initialX: Math.random() * window.innerWidth,
@@ -37,10 +37,11 @@ export default function Hero() {
   return (
     <section className="relative h-[100svh] min-h-[650px] flex flex-col items-center justify-between overflow-hidden bg-[#fdf5ec] pt-20 md:pt-24">
       {/* Background Layer */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <Image src="/mandala_pattern.png" alt="Floral Frame" fill className="object-cover opacity-50 mix-blend-multiply" priority />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 bg-[#f4ebd9]">
+        <Image src="/texture2.jpeg" alt="Silk Texture" fill className="object-cover opacity-35 mix-blend-overlay" priority />
+        <Image src="/mandala_pattern.png" alt="Floral Frame" fill className="object-cover opacity-40 mix-blend-multiply" priority />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-white/25 via-transparent to-[#fdf5ec] z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#f4ebd9]/40 via-transparent to-[#fdf5ec] z-0" />
 
       {/* Top Spacer to push center content perfectly to the middle mathematically */}
       <div className="w-full flex-1 pointer-events-none" />
@@ -117,13 +118,15 @@ export default function Hero() {
       {!shouldReduceMotion && (
         <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden mix-blend-multiply">
           {petals.map((p, i) => (
-            <motion.div
+            <motion.svg
               key={i}
+              viewBox="0 0 24 24"
+              fill="currentColor"
               initial={{ y: -50, x: p.initialX, opacity: 0 }}
               animate={{
                 y: "110vh",
                 x: p.animateX,
-                opacity: [0, 0.52, 0],
+                opacity: [0, 0.8, 0],
                 rotate: [0, 180, 360],
               }}
               transition={{
@@ -132,9 +135,11 @@ export default function Hero() {
                 delay: p.delay,
                 ease: "linear",
               }}
-              className={`absolute w-2 h-2 sm:w-3 sm:h-3 rounded-full blur-[1px] ${p.color}`}
+              className={`absolute w-3 h-3 sm:w-4 sm:h-4 opacity-70 transform-gpu ${p.color}`}
               style={{ willChange: "transform, opacity" }}
-            />
+            >
+              <path d="M12,2 C10,2 8.5,3.5 8.5,5.5 C8.5,6.5 9,7.5 9.8,8.2 C8,8.5 6.5,10 6.5,12 C6.5,14 8,15.5 9.8,15.8 C9,16.5 8.5,17.5 8.5,18.5 C8.5,20.5 10,22 12,22 C14,22 15.5,20.5 15.5,18.5 C15.5,17.5 15,16.5 14.2,15.8 C16,15.5 17.5,14 17.5,12 C17.5,10 16,8.5 14.2,8.2 C15,7.5 15.5,6.5 15.5,5.5 C15.5,3.5 14,2 12,2 Z" />
+            </motion.svg>
           ))}
         </div>
       )}

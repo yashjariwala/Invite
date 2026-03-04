@@ -10,8 +10,12 @@ export default function GuideSection() {
   const { travel, accommodation, gifts, faqs } = invitationData;
 
   return (
-    <section id="guide" className="py-24 px-4 bg-[#f4ebd9] border-b border-[#e3dccf]">
-      <div className="max-w-6xl mx-auto">
+    <section id="guide" className="py-24 px-4 bg-[#fdf5ec] border-b border-[#e3dccf] relative">
+      {/* Background Texture Layers */}
+      <div className="absolute inset-0 z-0 bg-[#f4ebd9]">
+        <Image src="/texture2.jpeg" alt="Background Texture" fill className="object-cover opacity-40 mix-blend-overlay" />
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +38,7 @@ export default function GuideSection() {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-6 mb-10">
+        <div className="grid lg:grid-cols-3 gap-6 mb-16">
           <InfoCard title="Travel">
             <div className="mb-3 flex flex-col items-center">
               <span className="font-medium block mb-2 text-[#4C1215]">Nearest Airports:</span>

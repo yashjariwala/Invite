@@ -20,8 +20,8 @@ export default function HomeV2() {
             <CountdownTimer />
             <EventDetails />
             <EventTimeline />
-            <StoryTimeline />
-            <Gallery />
+            {/* <StoryTimeline /> */}
+            {/* <Gallery /> */}
             <GuideSection />
 
             <footer className="bg-[#4C1215] text-white py-12 text-center">

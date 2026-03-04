@@ -7,7 +7,7 @@ import { invitationData } from "@/lib/invitationData";
 import IndianCard from "./IndianCard";
 
 export default function GuideSection() {
-  const { travel, accommodation, gifts, faqs } = invitationData;
+  const { travel, accommodation, gifts } = invitationData;
 
   return (
     <section id="guide" className="py-24 px-4 bg-[#fdf5ec] border-b border-[#e3dccf] relative">

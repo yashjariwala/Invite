@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { invitationData } from "@/lib/invitationData";
 
 export default function EventTimeline() {
@@ -103,34 +104,66 @@ export default function EventTimeline() {
 }
 
 function EventCard({ event, isEven, mobile = false }: { event: { time: string; title: string; location?: string; description?: string }, isEven: boolean, mobile?: boolean }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useSpring(y, { stiffness: 350, damping: 35 });
+    const rotateY = useSpring(x, { stiffness: 350, damping: 35 });
+    const glowX = useMotionValue(50);
+    const glowY = useMotionValue(50);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+        const nx = (e.clientX - rect.left) / rect.width;
+        const ny = (e.clientY - rect.top) / rect.height;
+        x.set((nx - 0.5) * 12);
+        y.set(-(ny - 0.5) * 12);
+        glowX.set(nx * 100);
+        glowY.set(ny * 100);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+        glowX.set(50);
+        glowY.set(50);
+    };
+
     return (
-        <div className={`
-      relative bg-white p-6 md:p-8 shadow-md border border-[#e6dece] max-w-[340px] w-full 
-      hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden
-      ${!mobile && isEven ? 'text-right' : 'text-left'}
-    `}>
-            {/* Luxury stationery inner borders */}
-            <div className="absolute inset-1.5 md:inset-2 border border-[#C5A46D]/15 pointer-events-none" />
+        <div style={{ perspective: "900px" }}>
+            <motion.div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+                className={`
+                  relative bg-white p-6 md:p-8 shadow-md border border-[#e6dece] max-w-[340px] w-full overflow-hidden
+                  ${!mobile && isEven ? 'text-right' : 'text-left'}
+                `}
+            >
+                {/* Cursor glow */}
+                <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(197,164,109,0.14), transparent 55%)` }}
+                />
+                {/* Inner border */}
+                <div className="absolute inset-1.5 md:inset-2 border border-[#C5A46D]/15 pointer-events-none" />
 
-            {/* Time Label */}
-            <div className={`flex flex-col ${!mobile && isEven ? 'items-end' : 'items-start'} mb-3`}>
-                <p className="font-sans tracking-[0.25em] text-[10px] md:text-xs text-[#C5A46D] uppercase font-medium bg-[#f4ebd9]/30 px-3 py-1 rounded-sm">
-                    {event.time}
-                </p>
-            </div>
-
-            {/* Title */}
-            <h4 className="font-serif text-2xl md:text-3xl text-[#2D3A3A] mb-3 leading-snug">{event.title}</h4>
-
-            {/* Divider */}
-            <div className={`w-12 h-[1px] bg-gradient-to-r from-[#C5A46D]/60 to-transparent block mb-4
-        ${!mobile && isEven ? 'ml-auto bg-gradient-to-l' : ''}
-      `} />
-
-            {/* Description */}
-            <p className="font-sans text-xs md:text-sm text-[#5c5c5c] leading-relaxed">
-                {event.description}
-            </p>
+                <div style={{ transform: "translateZ(12px)" }}>
+                    {/* Time Label */}
+                    <div className={`flex flex-col ${!mobile && isEven ? 'items-end' : 'items-start'} mb-3`}>
+                        <p className="font-sans tracking-[0.25em] text-[10px] md:text-xs text-[#C5A46D] uppercase font-medium bg-[#f4ebd9]/30 px-3 py-1 rounded-sm">
+                            {event.time}
+                        </p>
+                    </div>
+                    <h4 className="font-serif text-2xl md:text-3xl text-[#2D3A3A] mb-3 leading-snug">{event.title}</h4>
+                    <div className={`w-12 h-[1px] bg-gradient-to-r from-[#C5A46D]/60 to-transparent block mb-4
+                        ${!mobile && isEven ? 'ml-auto bg-gradient-to-l' : ''}
+                    `} />
+                    <p className="font-sans text-xs md:text-sm text-[#5c5c5c] leading-relaxed">{event.description}</p>
+                </div>
+            </motion.div>
         </div>
     );
 }

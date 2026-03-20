@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
 import IndianCard from "./IndianCard";
@@ -114,8 +115,46 @@ export default function EventTimeline() {
 }
 
 function EventCard({ event }: { event: { time: string; title: string; location?: string; description?: string } }) {
+    const wrapRef = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useSpring(y, { stiffness: 300, damping: 35 });
+    const rotateY = useSpring(x, { stiffness: 300, damping: 35 });
+    const glowX = useMotionValue(50);
+    const glowY = useMotionValue(50);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!wrapRef.current) return;
+        const rect = wrapRef.current.getBoundingClientRect();
+        const nx = (e.clientX - rect.left) / rect.width;
+        const ny = (e.clientY - rect.top) / rect.height;
+        x.set((nx - 0.5) * 10);
+        y.set(-(ny - 0.5) * 10);
+        glowX.set(nx * 100);
+        glowY.set(ny * 100);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+        glowX.set(50);
+        glowY.set(50);
+    };
+
     return (
-        <div className="w-full">
+        <div style={{ perspective: "900px" }} className="w-full">
+            <motion.div
+                ref={wrapRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{ rotateX, rotateY, transformStyle: "preserve-3d", width: "100%" }}
+                className="relative"
+            >
+                {/* Cursor glow */}
+                <motion.div
+                    className="absolute inset-0 pointer-events-none z-30"
+                    style={{ background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(212,175,55,0.12), transparent 55%)` }}
+                />
             <IndianCard className="!max-w-[340px]">
                 <div className="flex flex-col items-center text-center w-full relative z-10 px-2">
                     {/* Top Decorative Motif */}
@@ -148,6 +187,7 @@ function EventCard({ event }: { event: { time: string; title: string; location?:
                     </p>
                 </div>
             </IndianCard>
+            </motion.div>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { invitationData } from "@/lib/invitationData";
@@ -72,14 +73,50 @@ export default function GuideSection() {
 }
 
 function InfoCard({ title, children }: { title: string; children: ReactNode }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(y, { stiffness: 300, damping: 35 });
+  const rotateY = useSpring(x, { stiffness: 300, damping: 35 });
+  const glowX = useMotionValue(50);
+  const glowY = useMotionValue(50);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!wrapRef.current) return;
+    const rect = wrapRef.current.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width;
+    const ny = (e.clientY - rect.top) / rect.height;
+    x.set((nx - 0.5) * 10);
+    y.set(-(ny - 0.5) * 10);
+    glowX.set(nx * 100);
+    glowY.set(ny * 100);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    glowX.set(50);
+    glowY.set(50);
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.98, y: 24 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8 }}
-      className="w-full h-full flex"
-    >
+    <div style={{ perspective: "900px" }} className="w-full h-full flex">
+      <motion.div
+        ref={wrapRef}
+        initial={{ opacity: 0, scale: 0.97, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.8 }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d", width: "100%" }}
+        className="relative w-full h-full flex"
+      >
+        {/* Cursor glow */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none z-30"
+          style={{ background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(212,175,55,0.12), transparent 55%)` }}
+        />
       <IndianCard className="w-full h-full">
         <div className="flex flex-col items-center text-center h-full">
           {/* Top Decorative Motif */}
@@ -103,6 +140,7 @@ function InfoCard({ title, children }: { title: string; children: ReactNode }) {
           </div>
         </div>
       </IndianCard>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

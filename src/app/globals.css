@@ -73,3 +73,40 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes shimmer-gold {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, #C5A46D 0%, #f0d080 40%, #C5A46D 60%, #f0d080 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-gold 4s linear infinite;
+}
+
+.float-animation {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}

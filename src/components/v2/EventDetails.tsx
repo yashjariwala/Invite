@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { invitationData } from "@/lib/invitationData";
 import IndianCard from "./IndianCard";
 import { FireEmbersOverlay, GlowingDustOverlay } from "./VideoEffects";
@@ -89,14 +90,50 @@ function EventCard({
   mapUrl: string;
   delay: number;
 }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(y, { stiffness: 300, damping: 35 });
+  const rotateY = useSpring(x, { stiffness: 300, damping: 35 });
+  const glowX = useMotionValue(50);
+  const glowY = useMotionValue(50);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!wrapRef.current) return;
+    const rect = wrapRef.current.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / rect.width;
+    const ny = (e.clientY - rect.top) / rect.height;
+    x.set((nx - 0.5) * 12);
+    y.set(-(ny - 0.5) * 12);
+    glowX.set(nx * 100);
+    glowY.set(ny * 100);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    glowX.set(50);
+    glowY.set(50);
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.98, y: 30 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, delay }}
-      className="w-full flex"
-    >
+    <div style={{ perspective: "1000px" }} className="w-full flex">
+      <motion.div
+        ref={wrapRef}
+        initial={{ opacity: 0, scale: 0.97, y: 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, delay }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d", width: "100%" }}
+        className="relative"
+      >
+        {/* Cursor-following glow overlay above IndianCard */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none z-30 rounded-[inherit]"
+          style={{ background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(212,175,55,0.12), transparent 55%)` }}
+        />
       <IndianCard>
         <div className="flex flex-col items-center text-center w-full h-full justify-between">
           <div className="flex flex-col items-center w-full">
@@ -179,6 +216,7 @@ function EventCard({
           </div>
         </div>
       </IndianCard>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

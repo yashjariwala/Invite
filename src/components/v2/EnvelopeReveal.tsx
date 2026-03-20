@@ -182,12 +182,14 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                 transform: "translateZ(0)",
                             }}
                         >
+                            {/* Front of the flap (Red) */}
                             <div
                                 className="absolute inset-0"
                                 style={{
                                     backfaceVisibility: "hidden",
                                     WebkitBackfaceVisibility: "hidden",
-                                    transform: "translateZ(1px)",
+                                    transform: "rotateX(0deg) translateZ(1px)",
+                                    WebkitTransform: "rotateX(0deg) translateZ(1px)",
                                 }}
                             >
                                 <div className="w-full h-full" style={{ filter: "drop-shadow(0px 8px 12px rgba(0,0,0,0.25))" }}>
@@ -203,7 +205,9 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                     style={{
                                         pointerEvents: isOpen ? "none" : "auto",
                                         transformStyle: "preserve-3d",
+                                        WebkitTransformStyle: "preserve-3d",
                                         transform: "translateZ(10px)",
+                                        WebkitTransform: "translateZ(10px)",
                                     }}
                                 >
                                     <Image
@@ -228,11 +232,13 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                                 </button>
                             </div>
 
+                            {/* Back of the flap (Gold, visible when open) */}
                             <div
                                 className="absolute inset-0 bg-[#D4AF37] envelope-texture shadow-[inset_0_0_50px_rgba(0,0,0,0.3)]"
                                 style={{
                                     clipPath: "polygon(0 0, 100% 0, 50% 100%)",
-                                    transform: "translateZ(-1px) rotateX(180deg)",
+                                    transform: "rotateX(180deg) translateZ(1px)",
+                                    WebkitTransform: "rotateX(180deg) translateZ(1px)",
                                     backfaceVisibility: "hidden",
                                     WebkitBackfaceVisibility: "hidden",
                                 }}

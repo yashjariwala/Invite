@@ -209,7 +209,7 @@ const EventCard = forwardRef<
   HTMLDivElement,
   {
     event: { time: string; title: string; description?: string };
-    variants: Record<string, unknown>;
+    variants: import("framer-motion").Variants;
     align: "left" | "right";
   }
 >(({ event, variants, align }, ref) => (

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Cormorant_Garamond, Lato, Noto_Serif_Devanagari } from "next/font/google";
+import { Great_Vibes, Cormorant_Garamond, Lato, Noto_Serif_Devanagari, Pinyon_Script } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -19,6 +19,12 @@ const lato = Lato({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "700"],
+});
+
+const pinyonScript = Pinyon_Script({
+  weight: "400",
+  variable: "--font-pinyon",
+  subsets: ["latin"],
 });
 
 const notoDevanagari = Noto_Serif_Devanagari({
@@ -42,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${greatVibes.variable} ${cormorant.variable} ${lato.variable} ${notoDevanagari.variable} antialiased bg-background text-foreground font-sans relative min-h-screen paper-texture`}
+        className={`${greatVibes.variable} ${cormorant.variable} ${lato.variable} ${notoDevanagari.variable} ${pinyonScript.variable} antialiased bg-background text-foreground font-sans relative min-h-screen paper-texture`}
       >
         <Script
           id="force-top-open"

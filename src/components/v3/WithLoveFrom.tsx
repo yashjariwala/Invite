@@ -1,65 +1,68 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { invitationData } from "@/lib/invitationData";
 
 export default function WithLoveFrom() {
   return (
-    <section className="relative py-16 sm:py-20 flex flex-col items-center overflow-hidden"
+    <section
+      className="relative py-16 sm:py-20 flex flex-col items-center overflow-hidden"
       style={{ background: "linear-gradient(160deg, #fffbf5, #fef6e8, #fdf3e0)" }}
     >
       {/* Top gold rule */}
-      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mb-12" />
+      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mb-10" />
 
-      {/* Decorative motif */}
-      <motion.svg
-        initial={{ opacity: 0, scale: 0.7 }}
+      {/* Heart */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        width="48" height="48" viewBox="0 0 48 48" fill="none"
-        className="mb-6"
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="mb-5"
       >
-        <circle cx="24" cy="24" r="10" stroke="#D4AF37" strokeWidth="0.8" strokeOpacity="0.5" />
-        <circle cx="24" cy="24" r="3" fill="#D4AF37" fillOpacity="0.7" />
-        <path d="M24 4 L24 14 M24 34 L24 44 M4 24 L14 24 M34 24 L44 24" stroke="#D4AF37" strokeWidth="0.6" strokeOpacity="0.4" />
-        <path d="M10 10 L17 17 M31 31 L38 38 M38 10 L31 17 M17 31 L10 38" stroke="#D4AF37" strokeWidth="0.5" strokeOpacity="0.3" />
-      </motion.svg>
+        <svg width="40" height="36" viewBox="0 0 40 36" fill="none">
+          <path
+            d="M20 34 C20 34 3 22 3 11 C3 5.477 7.477 1 13 1 C16.5 1 19.5 2.9 20 5 C20.5 2.9 23.5 1 27 1 C32.523 1 37 5.477 37 11 C37 22 20 34 20 34Z"
+            fill="#D4AF37"
+            fillOpacity="0.85"
+            stroke="#D4AF37"
+            strokeWidth="0.5"
+          />
+        </svg>
+      </motion.div>
 
       <motion.p
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="font-sans text-[#D4AF37] text-[10px] sm:text-xs uppercase tracking-[0.35em] mb-5"
+        transition={{ delay: 0.15, duration: 0.7 }}
+        className="font-sans text-[#D4AF37] text-[10px] sm:text-xs uppercase tracking-[0.35em] mb-6"
       >
         With Love From
       </motion.p>
 
-      <div className="flex flex-col items-center gap-3">
-        {invitationData.withLoveFrom.map((person, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 + i * 0.15, duration: 0.8 }}
-            className="text-center"
-          >
-            <p className="font-script text-[#4C1215] leading-tight"
-              style={{ fontSize: "clamp(1.6rem, 5vw, 2.4rem)" }}
-            >
-              {person.name}
-            </p>
-            <p className="font-sans text-[#D4AF37] text-[9px] sm:text-[11px] uppercase tracking-[0.28em] mt-0.5">
-              {person.relation}
-            </p>
-          </motion.div>
-        ))}
-      </div>
+      {/* Names on one line */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.25, duration: 0.8 }}
+        className="text-center"
+      >
+        <p
+          className="text-[#4C1215] leading-tight"
+          style={{ fontSize: "clamp(2rem, 5vw, 2.8rem)", fontFamily: "var(--font-pinyon), cursive" }}
+        >
+          Ankita{" "}
+          <span className="font-sans font-light text-[#4C1215]" style={{ fontSize: "clamp(1.1rem, 3vw, 1.6rem)" }}>&amp;</span>
+          {" "}Amit Jariwala
+        </p>
+        <p className="font-sans text-[#D4AF37]/80 text-[10px] sm:text-xs uppercase tracking-[0.28em] mt-2">
+          Chachi &amp; Chachu
+        </p>
+      </motion.div>
 
       {/* Bottom gold rule */}
-      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mt-12" />
+      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mt-10" />
     </section>
   );
 }

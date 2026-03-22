@@ -62,8 +62,10 @@ export default function Hero() {
     );
   }, []);
 
+  const groomFullName = `${invitationData.couple.groom} ${invitationData.groomFamily.surname}`;
+  const brideFullName = `${invitationData.couple.bride} ${invitationData.brideFamily.surname}`;
   const brideDelay = 1.0;
-  const groomDelay = brideDelay + invitationData.couple.bride.length * 0.055 + 0.55;
+  const groomDelay = brideDelay + groomFullName.length * 0.045 + 0.55;
 
   return (
     <section
@@ -166,39 +168,38 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1.2 }}
-          className="font-serif text-[#D4AF37] text-base sm:text-lg md:text-xl mb-5 tracking-normal"
+          className="font-serif text-[#9A7B0A] text-lg sm:text-xl md:text-2xl mb-5 tracking-normal"
           style={{ fontFamily: "var(--font-devanagari), 'Noto Serif Devanagari', serif", letterSpacing: "0.05em" }}
         >
           {invitationData.invocation}
         </motion.p>
 
-        {/* Groom's family invite text */}
+        {/* Groom's family — Rupa & Ashish Jariwala together */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 1.0 }}
-          className="text-center mb-7 px-4 max-w-[340px] sm:max-w-[440px]"
+          className="text-center mb-6 px-4 max-w-[380px] sm:max-w-[520px]"
         >
-          <p className="font-script text-[#4C1215] leading-snug"
-            style={{ fontSize: "clamp(1.5rem, 3.8vw, 1.9rem)" }}
+          <p className="text-[#4C1215] leading-tight"
+            style={{ fontSize: "clamp(1.9rem, 5.5vw, 3.2rem)", fontFamily: "var(--font-pinyon), cursive", letterSpacing: "0.02em" }}
           >
-            {invitationData.groomFamily.fatherName}
-            <span className="inline font-sans font-extralight text-[#D4AF37] mx-2" style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.3rem)" }}>&amp;</span>
-            {invitationData.groomFamily.motherName}
+            Rupa
+            <span className="not-italic font-light text-[#4C1215] mx-2" style={{ fontSize: "clamp(1.1rem, 3vw, 1.6rem)" }}>&amp;</span>
+            Ashish Jariwala
           </p>
-          <p className="font-sans text-[#4C1215]/50 text-[11px] sm:text-[11px] uppercase tracking-[0.2em] mt-3">
+          <p className="font-sans text-[#4C1215]/80 text-[14px] sm:text-[16px] uppercase tracking-[0.18em] mt-3">
             invite you to the wedding of their son
           </p>
         </motion.div>
 
-        {/* Names — Yash first (groom's side card) */}
+        {/* Names — first names only, big script */}
         <h1
-          className="font-script leading-[0.84] text-[#4C1215] mt-3 sm:mt-5"
+          className="font-script leading-[0.9] text-[#4C1215] mt-3 sm:mt-4"
           style={{
-            fontSize: "clamp(4.4rem, 14vw, 10.5rem)",
-            textShadow:
-              "0 0 60px rgba(212,175,55,0.3), 0 4px 24px rgba(212,175,55,0.12)",
-            paddingTop: "0.25em",
+            fontSize: "clamp(5rem, 13vw, 9rem)",
+            textShadow: "0 0 60px rgba(212,175,55,0.3), 0 4px 24px rgba(212,175,55,0.12)",
+            paddingTop: "0.15em",
           }}
         >
           <AnimatedName name={invitationData.couple.groom} startDelay={brideDelay} />
@@ -210,23 +211,14 @@ export default function Hero() {
               duration: 0.7,
               ease: EASE,
             }}
-            className="block font-sans font-extralight tracking-[0.3em] text-[#D4AF37]"
-            style={{ fontSize: "clamp(1.6rem, 5vw, 3.5rem)", margin: "0.2em 0" }}
+            className="block font-sans font-extralight tracking-[0.3em] text-[#4C1215]"
+            style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", margin: "0.2em 0" }}
           >
             &amp;
           </motion.span>
           <AnimatedName name={invitationData.couple.bride} startDelay={groomDelay} />
         </h1>
 
-        {/* Bride's family */}
-        <motion.p
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: groomDelay + invitationData.couple.bride.length * 0.055 + 0.2, duration: 0.9 }}
-          className="font-serif text-[#4C1215]/60 text-[10px] sm:text-xs italic mt-3 tracking-wide"
-        >
-          Daughter of {invitationData.brideFamily.fatherName} &amp; {invitationData.brideFamily.motherName}
-        </motion.p>
 
 
         {/* Gold divider */}
@@ -240,13 +232,13 @@ export default function Hero() {
           }}
           className="flex items-center gap-2.5 my-6 sm:my-8 w-full max-w-[260px]"
         >
-          <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70" />
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[#9A7B0A]/70" />
           <svg width="28" height="14" viewBox="0 0 28 14" fill="none" className="flex-shrink-0">
-            <path d="M14 1L17 7L14 13L11 7L14 1Z" stroke="#D4AF37" strokeWidth="0.8" fill="none" />
-            <circle cx="14" cy="7" r="2" fill="#D4AF37" />
-            <path d="M0 7H9M19 7H28" stroke="#D4AF37" strokeWidth="0.6" strokeOpacity="0.6" />
+            <path d="M14 1L17 7L14 13L11 7L14 1Z" stroke="#9A7B0A" strokeWidth="0.8" fill="none" />
+            <circle cx="14" cy="7" r="2" fill="#9A7B0A" />
+            <path d="M0 7H9M19 7H28" stroke="#9A7B0A" strokeWidth="0.6" strokeOpacity="0.8" />
           </svg>
-          <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70" />
+          <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#9A7B0A]/70" />
         </motion.div>
 
         {/* Date */}
@@ -257,7 +249,7 @@ export default function Hero() {
             delay: groomDelay + invitationData.couple.groom.length * 0.055 + 0.5,
             duration: 0.9,
           }}
-          className="font-serif text-lg sm:text-2xl md:text-3xl text-[#4C1215]/90 italic tracking-wide"
+          className="font-serif text-xl sm:text-2xl md:text-3xl text-[#4C1215]/90 italic tracking-wide"
         >
           {invitationData.couple.date}
         </motion.p>
@@ -270,7 +262,7 @@ export default function Hero() {
             delay: groomDelay + invitationData.couple.groom.length * 0.055 + 0.8,
             duration: 0.8,
           }}
-          className="font-sans text-[10px] sm:text-xs uppercase tracking-[0.35em] text-[#D4AF37] mt-3"
+          className="font-sans text-[12px] sm:text-sm uppercase tracking-[0.35em] text-[#9A7B0A] mt-3"
         >
           {invitationData.cityLabel}
         </motion.p>

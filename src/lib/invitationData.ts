@@ -26,8 +26,8 @@ export const invitationData = {
     surname: "Jariwala",
   },
   withLoveFrom: [
+    { name: "Ankita", relation: "Chachi" },
     { name: "Amit Jariwala", relation: "Chachu" },
-    { name: "Ankita Jariwala", relation: "Chachi" },
   ],
   weddingDateIso: "2026-07-04T00:00:00+05:30",
   weddingDateLabel: "Saturday, July 4, 2026",

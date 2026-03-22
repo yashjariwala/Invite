@@ -180,24 +180,25 @@ export default function Hero() {
           className="text-center mb-7 px-4 max-w-[340px] sm:max-w-[440px]"
         >
           <p className="font-script text-[#4C1215] leading-snug"
-            style={{ fontSize: "clamp(1.15rem, 3.8vw, 1.9rem)" }}
+            style={{ fontSize: "clamp(1.5rem, 3.8vw, 1.9rem)" }}
           >
             {invitationData.groomFamily.fatherName}
             <span className="inline font-sans font-extralight text-[#D4AF37] mx-2" style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.3rem)" }}>&amp;</span>
             {invitationData.groomFamily.motherName}
           </p>
-          <p className="font-sans text-[#4C1215]/50 text-[9px] sm:text-[11px] uppercase tracking-[0.2em] mt-3">
+          <p className="font-sans text-[#4C1215]/50 text-[11px] sm:text-[11px] uppercase tracking-[0.2em] mt-3">
             invite you to the wedding of their son
           </p>
         </motion.div>
 
         {/* Names — Yash first (groom's side card) */}
         <h1
-          className="font-script leading-[0.84] text-[#4C1215]"
+          className="font-script leading-[0.84] text-[#4C1215] mt-3 sm:mt-5"
           style={{
-            fontSize: "clamp(3.8rem, 14vw, 10.5rem)",
+            fontSize: "clamp(4.4rem, 14vw, 10.5rem)",
             textShadow:
               "0 0 60px rgba(212,175,55,0.3), 0 4px 24px rgba(212,175,55,0.12)",
+            paddingTop: "0.25em",
           }}
         >
           <AnimatedName name={invitationData.couple.groom} startDelay={brideDelay} />

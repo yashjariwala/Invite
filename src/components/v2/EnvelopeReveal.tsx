@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
     const [isOpen, setIsOpen] = useState(false);
     const [isDone, setIsDone] = useState(false);
-    const [fullyDone, setFullyDone] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const timeoutRef = useRef<number | null>(null);
 
@@ -56,17 +55,20 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
             audio.play().catch((e) => console.log("Audio autoplay blocked by browser:", e));
         }
 
+        // Release scroll slightly before unmount so layout shift doesn't coincide with unmount
+        timeoutRef.current = window.setTimeout(() => {
+            document.body.style.overflow = "";
+            document.body.style.touchAction = "";
+        }, 3400);
         timeoutRef.current = window.setTimeout(() => {
             setIsDone(true);
-        }, 3800);
+        }, 4000);
     };
-
-    if (fullyDone) return null;
 
     const zoomScale = isMobile ? 3.25 : 3.85;
 
     return (
-        <AnimatePresence onExitComplete={() => setFullyDone(true)}>
+        <AnimatePresence>
             {!isDone && (
                 <motion.div
                     initial={{ opacity: 1, scale: 1 }}
@@ -74,7 +76,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         opacity: isOpen ? 0 : 1,
                         scale: isOpen ? zoomScale : 1,
                     }}
-                    exit={{ opacity: 0, transition: { duration: 0 } }}
+                    exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeOut" } }}
                     transition={{
                         opacity: { duration: 1.2, delay: 1.5, ease: "easeIn" },
                         scale: { duration: 1.72, delay: 0.82, ease: [0.22, 0.61, 0.36, 1] },
@@ -103,12 +105,12 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         />
                     </motion.div>
 
-                    {/* Flash to blend into site */}
+                    {/* Flash to blend into site — plain white, no blend mode */}
                     <motion.div
-                        className="absolute inset-0 pointer-events-none z-[100] bg-white mix-blend-overlay"
+                        className="absolute inset-0 pointer-events-none z-[100] bg-[#fffbf5]"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: isOpen ? [0, 0.9, 0] : 0 }}
-                        transition={{ duration: 2.55, delay: 0.8, ease: "easeInOut" }}
+                        animate={{ opacity: isOpen ? [0, 0.6, 0] : 0 }}
+                        transition={{ duration: 2.2, delay: 1.0, ease: "easeInOut" }}
                     />
 
                     <div
@@ -124,12 +126,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         {/* Left flap */}
                         <div
                             className="absolute inset-0 w-full h-full z-10 transform-gpu"
-                            style={{
-                                filter: "drop-shadow(3px 0px 10px rgba(0,0,0,0.15))",
-                                willChange: "transform",
-                                transform: "translateZ(0)",
-                                backfaceVisibility: "hidden",
-                            }}
+                            style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
                         >
                             <div
                                 className="w-full h-full bg-[#8A151B] envelope-texture"
@@ -140,12 +137,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         {/* Right flap */}
                         <div
                             className="absolute inset-0 w-full h-full z-10 transform-gpu"
-                            style={{
-                                filter: "drop-shadow(-3px 0px 10px rgba(0,0,0,0.15))",
-                                willChange: "transform",
-                                transform: "translateZ(0)",
-                                backfaceVisibility: "hidden",
-                            }}
+                            style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
                         >
                             <div
                                 className="w-full h-full bg-[#8A151B] envelope-texture"
@@ -156,12 +148,7 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         {/* Bottom flap */}
                         <div
                             className="absolute inset-0 w-full h-full z-20 transform-gpu"
-                            style={{
-                                filter: "drop-shadow(0px -5px 15px rgba(0,0,0,0.2))",
-                                willChange: "transform",
-                                transform: "translateZ(0)",
-                                backfaceVisibility: "hidden",
-                            }}
+                            style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
                         >
                             <div
                                 className="w-full h-full bg-[#730E13] envelope-texture"

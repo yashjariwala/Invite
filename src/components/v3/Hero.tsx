@@ -276,7 +276,7 @@ export default function Hero() {
           delay: groomDelay + invitationData.couple.groom.length * 0.055 + 1.2,
           duration: 1,
         }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[6] flex flex-col items-center gap-2 cursor-pointer"
+        className="absolute bottom-8 left-0 right-0 z-[6] flex flex-col items-center gap-2 cursor-pointer"
         onClick={() => document.getElementById("pheras")?.scrollIntoView({ behavior: "smooth" })}
       >
         <span className="font-sans text-[8px] uppercase tracking-[0.45em] text-[#D4AF37]/60">

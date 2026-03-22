@@ -55,14 +55,14 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
             audio.play().catch((e) => console.log("Audio autoplay blocked by browser:", e));
         }
 
-        // Release scroll slightly before unmount so layout shift doesn't coincide with unmount
+        // Release scroll and unmount right after opacity fade completes (~2.7s after click)
         timeoutRef.current = window.setTimeout(() => {
             document.body.style.overflow = "";
             document.body.style.touchAction = "";
-        }, 3400);
+        }, 2600);
         timeoutRef.current = window.setTimeout(() => {
             setIsDone(true);
-        }, 4000);
+        }, 2800);
     };
 
     const zoomScale = isMobile ? 3.25 : 3.85;
@@ -76,7 +76,6 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         opacity: isOpen ? 0 : 1,
                         scale: isOpen ? zoomScale : 1,
                     }}
-                    exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeOut" } }}
                     transition={{
                         opacity: { duration: 1.2, delay: 1.5, ease: "easeIn" },
                         scale: { duration: 1.72, delay: 0.82, ease: [0.22, 0.61, 0.36, 1] },
@@ -105,13 +104,6 @@ export default function EnvelopeReveal({ onOpen }: { onOpen?: () => void }) {
                         />
                     </motion.div>
 
-                    {/* Flash to blend into site — plain white, no blend mode */}
-                    <motion.div
-                        className="absolute inset-0 pointer-events-none z-[100] bg-[#fffbf5]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: isOpen ? [0, 0.6, 0] : 0 }}
-                        transition={{ duration: 2.2, delay: 1.0, ease: "easeInOut" }}
-                    />
 
                     <div
                         className="relative flex-none z-10"

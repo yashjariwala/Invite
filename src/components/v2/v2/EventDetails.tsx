@@ -134,88 +134,88 @@ function EventCard({
           className="absolute inset-0 pointer-events-none z-30 rounded-[inherit]"
           style={{ background: `radial-gradient(circle at ${glowX}% ${glowY}%, rgba(212,175,55,0.12), transparent 55%)` }}
         />
-      <IndianCard>
-        <div className="flex flex-col items-center text-center w-full h-full justify-between">
-          <div className="flex flex-col items-center w-full">
-            {/* Elegant Video Portals */}
-            {title === "Wedding Ceremony (Lagna)" ? (
-              <div className="w-52 h-52 md:w-64 md:h-64 mb-6 mt-2 relative rounded-full overflow-hidden border-[3px] border-[#D4AF37]/60 shadow-[0_10px_30px_rgba(76,18,21,0.4)] flex items-center justify-center bg-[#4C1215] group">
-                <div className="absolute inset-0 w-full h-full">
-                  {/* Base Image with Cinematic Pan */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] ease-linear group-hover:scale-125"
-                    style={{ backgroundImage: `url('/v2/wedding_pheras_realistic.png')` }}
-                  />
-                  {/* Subtle pulsing CSS fire overlay over the image */}
-                  <FireEmbersOverlay />
+        <IndianCard>
+          <div className="flex flex-col items-center text-center w-full h-full justify-between">
+            <div className="flex flex-col items-center w-full">
+              {/* Elegant Video Portals */}
+              {title === "Wedding Ceremony" ? (
+                <div className="w-52 h-52 md:w-64 md:h-64 mb-6 mt-2 relative rounded-full overflow-hidden border-[3px] border-[#D4AF37]/60 shadow-[0_10px_30px_rgba(76,18,21,0.4)] flex items-center justify-center bg-[#4C1215] group">
+                  <div className="absolute inset-0 w-full h-full">
+                    {/* Base Image with Cinematic Pan */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] ease-linear group-hover:scale-125"
+                      style={{ backgroundImage: `url('/v2/wedding_pheras_realistic.png')` }}
+                    />
+                    {/* Subtle pulsing CSS fire overlay over the image */}
+                    <FireEmbersOverlay />
+                  </div>
+                  {/* Inner gold shadow ring to blend the video border */}
+                  <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(212,175,55,0.6)] pointer-events-none z-10" />
                 </div>
-                {/* Inner gold shadow ring to blend the video border */}
-                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(212,175,55,0.6)] pointer-events-none z-10" />
-              </div>
-            ) : title === "Reception" ? (
-              <div className="w-52 h-52 md:w-64 md:h-64 mb-6 mt-2 relative rounded-full overflow-hidden border-[3px] border-[#D4AF37]/60 shadow-[0_10px_30px_rgba(76,18,21,0.4)] flex items-center justify-center bg-[#4C1215] group">
-                <div className="absolute inset-0 w-full h-full">
-                  {/* Base Image with Cinematic Pan */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] ease-linear group-hover:scale-125"
-                    style={{ backgroundImage: `url('/v2/reception_sofa_realistic.png')` }}
-                  />
-                  {/* Subtle elegant stardust overlay over the image */}
-                  <GlowingDustOverlay />
+              ) : title === "Reception" ? (
+                <div className="w-52 h-52 md:w-64 md:h-64 mb-6 mt-2 relative rounded-full overflow-hidden border-[3px] border-[#D4AF37]/60 shadow-[0_10px_30px_rgba(76,18,21,0.4)] flex items-center justify-center bg-[#4C1215] group">
+                  <div className="absolute inset-0 w-full h-full">
+                    {/* Base Image with Cinematic Pan */}
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] ease-linear group-hover:scale-125"
+                      style={{ backgroundImage: `url('/v2/reception_sofa_realistic.png')` }}
+                    />
+                    {/* Subtle elegant stardust overlay over the image */}
+                    <GlowingDustOverlay />
+                  </div>
+                  <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(212,175,55,0.6)] pointer-events-none z-10" />
                 </div>
-                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(212,175,55,0.6)] pointer-events-none z-10" />
-              </div>
-            ) : (
-              <div className="text-[#D4AF37] opacity-80 z-10 mb-4 transition-transform duration-500 hover:scale-110">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
-                </svg>
-              </div>
-            )}
+              ) : (
+                <div className="text-[#D4AF37] opacity-80 z-10 mb-4 transition-transform duration-500 hover:scale-110">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
+                  </svg>
+                </div>
+              )}
 
-            <h3 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 leading-tight font-semibold relative z-10 w-full px-2">
-              {title}
-            </h3>
+              <h3 className="font-serif text-2xl md:text-3xl text-[#4C1215] mb-3 leading-tight font-semibold relative z-10 w-full px-2">
+                {title}
+              </h3>
 
-            {/* Ornate Indian Divider */}
-            <div className="flex items-center gap-2 mb-8 relative z-10 w-full justify-center">
-              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]" />
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37] opacity-50" />
-              <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
-              <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]" />
+              {/* Ornate Indian Divider */}
+              <div className="flex items-center gap-2 mb-8 relative z-10 w-full justify-center">
+                <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]" />
+                <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+                <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37] opacity-50" />
+                <div className="w-1.5 h-1.5 rotate-45 bg-[#D4AF37]" />
+                <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]" />
+              </div>
+            </div>
+
+            <div className="space-y-6 w-full flex-grow flex flex-col items-center justify-center relative z-10">
+              <div className="flex flex-col items-center gap-1 w-full relative">
+                <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 opacity-20 pointer-events-none">
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                </div>
+                <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Date</p>
+                <p className="font-serif text-lg md:text-xl text-[#4C1215] italic">{date}</p>
+              </div>
+
+              <div className="flex flex-col items-center gap-1 w-full relative">
+                <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 opacity-20 pointer-events-none">
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                </div>
+                <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Time</p>
+                <p className="font-serif text-lg md:text-xl text-[#4C1215] italic">{time}</p>
+              </div>
+
+              <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent mt-2 mb-1" />
+
+              <div className="flex flex-col items-center gap-1 pb-2">
+                <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Venue</p>
+                <p className="font-serif text-xl md:text-2xl text-[#4C1215] mt-1">{venue}</p>
+                <p className="font-sans text-[9px] md:text-[10px] text-[#8a8a8a] mt-2 tracking-widest uppercase">{address}</p>
+              </div>
             </div>
           </div>
-
-          <div className="space-y-6 w-full flex-grow flex flex-col items-center justify-center relative z-10">
-            <div className="flex flex-col items-center gap-1 w-full relative">
-              <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 opacity-20 pointer-events-none">
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-              </div>
-              <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Date</p>
-              <p className="font-serif text-lg md:text-xl text-[#4C1215] italic">{date}</p>
-            </div>
-
-            <div className="flex flex-col items-center gap-1 w-full relative">
-              <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-4 opacity-20 pointer-events-none">
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-              </div>
-              <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Time</p>
-              <p className="font-serif text-lg md:text-xl text-[#4C1215] italic">{time}</p>
-            </div>
-
-            <div className="w-12 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent mt-2 mb-1" />
-
-            <div className="flex flex-col items-center gap-1 pb-2">
-              <p className="font-sans tracking-[0.25em] text-[9px] md:text-[10px] uppercase text-[#D4AF37] font-bold mb-0.5">Venue</p>
-              <p className="font-serif text-xl md:text-2xl text-[#4C1215] mt-1">{venue}</p>
-              <p className="font-sans text-[9px] md:text-[10px] text-[#8a8a8a] mt-2 tracking-widest uppercase">{address}</p>
-            </div>
-          </div>
-        </div>
-      </IndianCard>
+        </IndianCard>
       </motion.div>
     </div>
   );

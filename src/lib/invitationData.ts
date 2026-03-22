@@ -22,7 +22,7 @@ export const invitationData = {
   cityLabel: "Marriot Hotel, Navi Mumbai",
   events: [
     {
-      title: "Wedding Ceremony (Lagna)",
+      title: "Wedding Ceremony",
       dateLabel: "Saturday, July 4, 2026",
       timeLabel: "4:30 PM onwards",
       venue: "Marriott Hotel",
@@ -44,7 +44,7 @@ export const invitationData = {
       events: [
         { time: "1:00 PM", title: "Check-in", description: "Settle in and relax." },
         { time: "3:00 PM", title: "High Tea", description: "Enjoy light refreshments before the festivities begin." },
-        { time: "4:30 PM", title: "Wedding Ceremony (Lagna)", description: "The beautiful moment we tie the knot, followed by dinner." },
+        { time: "4:30 PM", title: "Wedding Ceremony", description: "The beautiful moment we tie the knot, followed by dinner." },
       ],
     },
     {

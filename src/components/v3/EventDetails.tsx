@@ -27,10 +27,7 @@ export default function EventDetails() {
           className="max-w-2xl mx-auto"
         >
           <div className="flex flex-col items-center mb-8">
-            <p className="font-sans text-[9px] uppercase tracking-[0.5em] text-[#D4AF37] mb-3">Venue</p>
-            <h3 className="font-script text-3xl sm:text-4xl text-[#fdf6e3]" style={{ textShadow: "0 0 30px rgba(212,175,55,0.4)" }}>
-              How to Find Us
-            </h3>
+            <p className="font-sans text-2xl sm:text-3xl uppercase tracking-[0.3em] text-[#D4AF37]">Venue</p>
           </div>
           <div className="overflow-hidden border border-[#D4AF37]/30 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
             <div className="w-full h-[240px] sm:h-[320px]">
@@ -106,20 +103,6 @@ function EventCard({ event, idx }: { event: (typeof invitationData.events)[numbe
 
       {/* Text content — sits over the image */}
       <div className="absolute inset-0 z-30 flex flex-col justify-end p-8 sm:p-12 md:p-16">
-        {/* Tag */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-          className="flex items-center gap-3 mb-4"
-        >
-          <div className="w-8 h-[1px] bg-[#D4AF37]/70" />
-          <span className="font-sans text-[9px] uppercase tracking-[0.5em] text-[#D4AF37]">
-            {isWedding ? "Wedding Ceremony" : "Grand Reception"}
-          </span>
-        </motion.div>
-
         {/* Big title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -141,11 +124,10 @@ function EventCard({ event, idx }: { event: (typeof invitationData.events)[numbe
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
-          className="grid grid-cols-3 gap-3 sm:gap-6 pt-5 border-t border-[#D4AF37]/25"
+          className="grid grid-cols-2 gap-3 sm:gap-6 pt-5 border-t border-[#D4AF37]/25"
         >
           <InfoBlock icon={<CalIcon />} label="Date" value={event.dateLabel} />
           <InfoBlock icon={<ClockIcon />} label="Time" value={event.timeLabel} />
-          <InfoBlock icon={<PinIcon />} label="Venue" value={event.venue} />
         </motion.div>
       </div>
     </motion.div>
